@@ -8,8 +8,10 @@ public class Travel
     public TimeSpan TravelTime { get; set; }
     public decimal Cost { get; set; }
     public Car AssignedCar { get; set; }
+    
+    public User Client { get; set; }
 
-    public Travel(int id, string departurePoint, string destinationPoint, DateTime tripDate, TimeSpan travelTime, decimal cost, Car assignedCar)
+    public Travel(int id, string departurePoint, string destinationPoint, DateTime tripDate, TimeSpan travelTime, decimal cost, Car assignedCar, User client)
     {
         Id = id;
         DeparturePoint = departurePoint;
@@ -18,5 +20,6 @@ public class Travel
         TravelTime = travelTime;
         Cost = cost;
         AssignedCar = assignedCar;
+        Client = client;
     }
 }
