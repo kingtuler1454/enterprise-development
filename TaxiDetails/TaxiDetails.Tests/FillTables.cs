@@ -62,19 +62,22 @@ namespace TaxiDetails.Tests
             Travels = new List<Travel>
             {
                 new Travel(1, "ул. Новая, д. 5", "пр-т Мира, д. 10", new DateTime(2024, 10, 1), new TimeSpan(0, 20, 0), 400, Cars[0],Users[0]),
-                new Travel(2, "ул. Лесная, д. 8", "ул. Рябиновая, д. 3", new DateTime(2024, 10,2), new TimeSpan(0, 15, 0), 300, Cars[1],Users[1]),
-                new Travel(3, "ул. Школьная, д. 12", "ул. Солнечная, д. 4", new DateTime(2024, 10,3), new TimeSpan(0, 25, 0), 500, Cars[2],Users[2]),
+                new Travel(12, "пр-т Суворова, д. 6", "ул. Кирова, д. 9", new DateTime(2024, 10, 13), new TimeSpan(0, 26, 0), 500, Cars[0],Users[1]),
+                new Travel(13, "ул. Орлова, д. 13", "ул. Цветочная, д. 2", new DateTime(2024, 10, 14), new TimeSpan(0, 50, 0), 550, Cars[0],Users[2]),
+
+                new Travel(2, "ул. Лесная, д. 8", "ул. Рябиновая, д. 3", new DateTime(2024, 10,2), new TimeSpan(0, 16, 0), 300, Cars[1],Users[0]),
+                new Travel(14, "ул. Колхозная, д. 7", "пр-т Победы, д. 4", new DateTime(2024, 10, 15), new TimeSpan(0, 30, 0), 600, Cars[1],Users[0]),
+                new Travel(11, "ул. Речная, д. 18", "ул. Полевая, д. 5", new DateTime(2024, 10, 12), new TimeSpan(0, 20, 0), 400, Cars[2],Users[0]),
+
+                new Travel(3, "ул. Школьная, д. 12", "ул. Солнечная, д. 4", new DateTime(2024, 10,3), new TimeSpan(0, 26, 0), 500, Cars[2],Users[2]),
                 new Travel(4, "пр-т Ленина, д. 21", "ул. Клубничная, д. 7", new DateTime(2024, 10, 4), new TimeSpan(0, 30, 0), 600, Cars[3],Users[3]),
-                new Travel(5, "ул. Парковая, д. 9", "пр-т Гагарина, д. 15", new DateTime(2024, 10, 5, 9, 0, 0), new TimeSpan(0, 18, 0), 350, Cars[4],Users[4]),
-                new Travel(6, "ул. Лермонтова, д. 2", "ул. Чехова, д. 10", new DateTime(2024, 10, 6), new TimeSpan(0, 22, 0), 450, Cars[5],Users[5]),
+                new Travel(5, "ул. Парковая, д. 9", "пр-т Гагарина, д. 15", new DateTime(2024, 10, 5), new TimeSpan(0, 20, 0), 350, Cars[4],Users[4]),
+                new Travel(6, "ул. Лермонтова, д. 2", "ул. Чехова, д. 10", new DateTime(2024, 10, 6), new TimeSpan(0, 26, 0), 450, Cars[5],Users[5]),
                 new Travel(7, "ул. Речная, д. 18", "ул. Полевая, д. 5", new DateTime(2024, 10, 7), new TimeSpan(0, 20, 0), 400, Cars[6],Users[6]),
-                new Travel(8, "пр-т Суворова, д. 6", "ул. Кирова, д. 9", new DateTime(2024, 10, 8), new TimeSpan(0, 25, 0), 500, Cars[7],Users[7]),
-                new Travel(9, "ул. Орлова, д. 13", "ул. Цветочная, д. 2", new DateTime(2024, 10, 9), new TimeSpan(0, 27, 0), 550, Cars[8],Users[8]),
-                new Travel(10, "ул. Колхозная, д. 7", "пр-т Победы, д. 4", new DateTime(2024, 10, 11), new TimeSpan(0, 30, 0), 600, Cars[9],Users[9]),
-                new Travel(11, "ул. Речная, д. 18", "ул. Полевая, д. 5", new DateTime(2024, 10, 12), new TimeSpan(0, 20, 0), 400, Cars[6],Users[0]),
-                new Travel(12, "пр-т Суворова, д. 6", "ул. Кирова, д. 9", new DateTime(2024, 10, 13), new TimeSpan(0, 25, 0), 500, Cars[7],Users[1]),
-                new Travel(13, "ул. Орлова, д. 13", "ул. Цветочная, д. 2", new DateTime(2024, 10, 14), new TimeSpan(0, 27, 0), 550, Cars[8],Users[2]),
-                new Travel(14, "ул. Колхозная, д. 7", "пр-т Победы, д. 4", new DateTime(2024, 10, 15), new TimeSpan(0, 30, 0), 600, Cars[9],Users[3])
+                new Travel(8, "пр-т Суворова, д. 6", "ул. Кирова, д. 9", new DateTime(2024, 10, 8), new TimeSpan(0, 26, 0), 500, Cars[7],Users[7]),
+                new Travel(9, "ул. Орлова, д. 13", "ул. Цветочная, д. 2", new DateTime(2024, 10, 9), new TimeSpan(0, 30, 0), 550, Cars[8],Users[8]),
+                new Travel(10, "ул. Колхозная, д. 7", "пр-т Победы, д. 4", new DateTime(2024, 10, 11), new TimeSpan(0, 30, 0), 600, Cars[9],Users[9])
+                
             };
         }
         
