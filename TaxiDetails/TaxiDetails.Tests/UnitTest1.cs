@@ -3,12 +3,16 @@ namespace TaxiDetails.Tests;
 using System.Diagnostics.CodeAnalysis;
 using TaxiDetailsClass.Domain;
 
-
+/// <summary>
+/// class for test requests
+/// </summary>
 public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsData>
 {
     private readonly TaxiDetailsData _dataProvider = dataProvider;
+    /// <summary>
+    /// info about driver of car
+    /// </summary>
     [Fact]
-    //Вывести все сведения о конкретном водителе и его автомобиле.
     public void ReturnCarDriverInfo()
     {
         string name = "Максим";
@@ -16,8 +20,9 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
         var getData = _dataProvider.Cars.Where(c => c.AssignedDriver.Name == name).Select(c => c).First();
         Assert.Equal(expectedData, getData);
     }
-    //Вывести всех пассажиров, совершивших поездки за заданный период, упорядочить по ФИО.
-
+    /// <summary>
+    /// info about passenger of dateinterval
+    /// </summary>
     [Fact]
     public void ReturnPassengetInfo()
     {
@@ -30,23 +35,20 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
             _dataProvider.Users[2].FullName,
             _dataProvider.Users[3].FullName
         };
-
         var getData = _dataProvider.Travels
             .Where(t => t.TripDate >= startDate && t.TripDate <= endDate)
-            .Select(t => t.Client.FullName) // Извлекаем клиентов (пассажиров)
-            .Distinct() // Убираем дубликаты
-            .OrderBy(u => u) // Сортируем по ФИО
+            .Select(t => t.Client.FullName) 
+            .Distinct()
+            .OrderBy(u => u) 
             .ToList();
-
         Assert.Equal(expectedUsersName, getData);
     }
-
-    //Вывести количество поездок каждого пассажира.
-
+    /// <summary>
+    /// info about passenger and count of trips
+    /// </summary>
     [Fact]
     public void ReturnPassengetTravelsCount()
     {
-
         var expectedUsersName = new Dictionary<string, int>
 {
     { _dataProvider.Users[0].FullName, 4 },
@@ -60,7 +62,6 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
     { _dataProvider.Users[8].FullName, 1 }, 
     { _dataProvider.Users[9].FullName, 1 }  
 };
-
         var getPassengerTripCounts = _dataProvider.Travels
          .GroupBy(t => t.Client) // Группируем по клиентам
          .Select(g => new
@@ -69,10 +70,11 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
              TripCount = g.Count() // Считаем количество поездок
          }).OrderBy(p => p.Passenger.Id)
          .ToDictionary(x => x.Passenger.FullName, x => x.TripCount); // Преобразуем в словарь
-
         Assert.Equal(expectedUsersName,getPassengerTripCounts );
     }
-    //Вывести топ 5 водителей по совершенному количеству поездок.
+    /// <summary>
+    /// top 5 drivers
+    /// </summary>
     [Fact]
     public void ReturnTopFiveDrives()
     {
@@ -94,14 +96,12 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
             .OrderByDescending(x => x.TripCount) // Сортируем по количеству поездок
             .Take(5) 
             .ToList();
-
-
         var actualUsersName1 = driverTripCounts1.ToDictionary(x => x.Driver.Name, x => x.TripCount);
-
-        // Сравниваем словари
         Assert.Equal(expectedUsersName1, actualUsersName1);
     }
-    //Вывести информацию о количестве поездок, среднем времени и максимальном времени поездки для каждого водителя.
+    /// <summary>
+    /// info about avg and max time of drivers
+    /// </summary>
     [Fact]
     public void ReturnStatisticTime()
     {
@@ -127,22 +127,19 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
         MaxDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Max(t => t.TravelTime.TotalMinutes)))
     ))
     .ToList();
-
-        // Сравниваем данные
         Assert.Equal(expectedData, driverTripStats);
     }
-
-
+    /// <summary>
+    /// info of client max trips in dateinterval 
+    /// </summary>
     [Fact]
     public void GetClientsMaxTrips()
     {
-        var startDate = new DateTime(2024, 10, 1); // Начальная дата
-        var endDate = new DateTime(2024, 10, 11); // Конечная дата
+        var startDate = new DateTime(2024, 10, 1); 
+        var endDate = new DateTime(2024, 10, 11); 
         var expectedData =new List<User>
         { _dataProvider.Users[0]};
-
-
-            var topPassengers = _dataProvider.Travels
+        var topPassengers = _dataProvider.Travels
         .Where(t => t.TripDate >= startDate && t.TripDate <= endDate) 
         .GroupBy(t => t.Client)
         .Select(g => new
@@ -160,11 +157,7 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
 
 
 
-        // Сравниваем данные
         Assert.Equal(expectedData, topPassengers);
     }
-
-
-
 }
 
