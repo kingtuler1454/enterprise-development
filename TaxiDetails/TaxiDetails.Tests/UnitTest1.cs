@@ -15,7 +15,7 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
     [Fact]
     public void ReturnCarDriverInfo()
     {
-        string name = "Максим";
+        string name = "РњР°РєСЃРёРј";
         var expectedData = _dataProvider.Cars[0];
         var getData = _dataProvider.Cars.Where(c => c.AssignedDriver.Name == name).Select(c => c).First();
         Assert.Equal(expectedData, getData);
@@ -63,13 +63,13 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
     { _dataProvider.Users[9].FullName, 1 }  
 };
         var getPassengerTripCounts = _dataProvider.Travels
-         .GroupBy(t => t.Client) // Группируем по клиентам
+         .GroupBy(t => t.Client) // ГѓГ°ГіГЇГЇГЁГ°ГіГҐГ¬ ГЇГ® ГЄГ«ГЁГҐГ­ГІГ Г¬
          .Select(g => new
          {
              Passenger = g.Key,
-             TripCount = g.Count() // Считаем количество поездок
+             TripCount = g.Count() // Г‘Г·ГЁГІГ ГҐГ¬ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГ®ГҐГ§Г¤Г®ГЄ
          }).OrderBy(p => p.Passenger.Id)
-         .ToDictionary(x => x.Passenger.FullName, x => x.TripCount); // Преобразуем в словарь
+         .ToDictionary(x => x.Passenger.FullName, x => x.TripCount); // ГЏГ°ГҐГ®ГЎГ°Г Г§ГіГҐГ¬ Гў Г±Г«Г®ГўГ Г°Гј
         Assert.Equal(expectedUsersName,getPassengerTripCounts );
     }
     /// <summary>
@@ -93,7 +93,7 @@ public class UnitTest1(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetails
                 Driver = g.Key,
                 TripCount = g.Count()
             })
-            .OrderByDescending(x => x.TripCount) // Сортируем по количеству поездок
+            .OrderByDescending(x => x.TripCount) // Г‘Г®Г°ГІГЁГ°ГіГҐГ¬ ГЇГ® ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГі ГЇГ®ГҐГ§Г¤Г®ГЄ
             .Take(5) 
             .ToList();
         var actualUsersName1 = driverTripCounts1.ToDictionary(x => x.Driver.Name, x => x.TripCount);
