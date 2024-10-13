@@ -17,11 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaxiDetailsClass\TaxiDetailsClass.csproj" />
-    <ProjectReference Include="..\TaxiDetails\TaxiDetails.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 

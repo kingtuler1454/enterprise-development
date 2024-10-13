@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using TaxiDetailsClass.Domain;
+﻿using TaxiDetailsClass.Domain;
 
-namespace TaxiDetails.Tests
-{
+namespace TaxiDetails.Tests;
 public class TaxiDetailsData
 {
     public List<Driver> Drivers { get; set; }
@@ -71,4 +68,4 @@ public class TaxiDetailsData
         ];
     }
 }
-}
+
