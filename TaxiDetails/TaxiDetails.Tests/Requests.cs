@@ -13,7 +13,7 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
     [Fact]
     public void ReturnCarDriverInfo()
     {
-        string name = "Ìàêñèì";
+        string name = "ÐœÐ°ÐºÑÐ¸Ð¼";
         var expectedData = _dataProvider.Cars[0];
         var getData = _dataProvider.Cars.Where(c => c.AssignedDriver.Name == name).Select(c => c).First();
         Assert.Equal(1, 1);
