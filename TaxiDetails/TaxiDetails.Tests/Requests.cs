@@ -1,4 +1,4 @@
-using TaxiDetails.Domain;
+using TaxiDetails;
 namespace TaxiDetails.Tests;
 /// <summary>
 /// class for test requests

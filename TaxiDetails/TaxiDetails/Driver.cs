@@ -1,4 +1,4 @@
-namespace TaxiDetails.Domain;
+namespace TaxiDetails;
 /// <summary>
 /// class driver about info of driver
 /// </summary>

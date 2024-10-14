@@ -1,4 +1,4 @@
-﻿using TaxiDetailsClass.Domain;
+﻿using TaxiDetails;
 
 namespace TaxiDetails.Tests;
 public class TaxiDetailsData

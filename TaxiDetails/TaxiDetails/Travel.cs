@@ -1,5 +1,5 @@
 using System;
-namespace TaxiDetails.Domain;
+namespace TaxiDetails;
 /// <summary>
 /// class Travel about info of trips
 /// </summary>
