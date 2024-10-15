@@ -1,9 +1,7 @@
-using TaxiDetails;
 namespace TaxiDetails.Tests;
 /// <summary>
 /// class for test requests
 /// </summary>
-/// <param name="dataProvider"></param>
 public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsData>
 {
     private readonly TaxiDetailsData _dataProvider = dataProvider;
@@ -16,7 +14,7 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
         string name = "Максим";
         var expectedData = _dataProvider.Cars[0];
         var getData = _dataProvider.Cars.Where(c => c.AssignedDriver.Name == name).Select(c => c).First();
-        Assert.Equal(1, 1);
+        Assert.Equal(expectedData, getData);
     }
     /// <summary>
     /// info about passenger of dateinterval

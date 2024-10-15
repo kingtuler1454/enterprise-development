@@ -3,14 +3,6 @@ namespace TaxiDetails;
 /// <summary>
 /// class Travel about info of trips
 /// </summary>
-/// <param name="id"></param>
-/// <param name="departurePoint"></param>
-/// <param name="destinationPoint"></param>
-/// <param name="tripDate"></param>
-/// <param name="travelTime"></param>
-/// <param name="cost"></param>
-/// <param name="assignedCar"></param>
-/// <param name="client"></param>
 public class Travel(int id, string departurePoint, string destinationPoint, DateTime tripDate, TimeSpan travelTime, decimal cost, Car assignedCar, User client)
 {
     /// <summary>

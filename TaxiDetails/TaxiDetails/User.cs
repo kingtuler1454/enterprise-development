@@ -2,9 +2,6 @@ namespace TaxiDetails;
 /// <summary>
 /// class User about info of users
 /// </summary>
-/// <param name="id"></param>
-/// <param name="phone"></param>
-/// <param name="fullName"></param>
 public class User(int id, string phone, string fullName)
 {   /// <summary>
     /// identificator

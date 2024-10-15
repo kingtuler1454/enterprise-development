@@ -2,13 +2,6 @@ namespace TaxiDetails;
 /// <summary>
 /// class driver about info of driver
 /// </summary>
-/// <param name="id"></param>
-/// <param name="name"></param>
-/// <param name="surname"></param>
-/// <param name="patronymic"></param>
-/// <param name="passport"></param>
-/// <param name="address"></param>
-/// <param name="phone"></param>
 public class Driver(int id, string name, string surname, string patronymic, string passport, string address, string phone)
 {
     /// <summary>
