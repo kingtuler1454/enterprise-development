@@ -1,4 +1,3 @@
-using System;
 namespace TaxiDetails;
 /// <summary>
 /// class Travel about info of trips
