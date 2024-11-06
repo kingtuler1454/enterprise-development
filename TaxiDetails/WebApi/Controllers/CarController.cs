@@ -11,9 +11,9 @@ namespace WebApi.Controllers;
 public class CarController(IRepository<Car, int> repository, IMapper mapper) : ControllerBase
 {
     /// <summary>
-    /// Возвращает список всех автомобилей.
+    /// return list of users
     /// </summary>
-    /// <returns>Список всех автомобилей и HTTP статус.</returns>
+    /// <returns>list of user and http status</returns>
     [HttpGet]
     public ActionResult<IEnumerable<Car>> Get()
     {
@@ -21,10 +21,10 @@ public class CarController(IRepository<Car, int> repository, IMapper mapper) : C
     }
 
     /// <summary>
-    /// Возвращает автомобиль по заданному идентификатору.
+    /// return car of identificator
     /// </summary>
-    /// <param name="id">Идентификатор нужного автомобиля.</param>
-    /// <returns>Объект автомобиля и HTTP статус.</returns>
+    /// <param name="id">identificator of car</param>
+    /// <returns>object of car and http.</returns>
     [HttpGet("{id}")]
     public ActionResult<Car> Get(int id)
     {
@@ -39,9 +39,9 @@ public class CarController(IRepository<Car, int> repository, IMapper mapper) : C
     }
 
     /// <summary>
-    /// Добавляет новый автомобиль в коллекцию.
+    /// add new car 
     /// </summary>
-    /// <param name="value">Экземпляр автомобиля, который нужно добавить в коллекцию.</param>
+    /// <param name="value">object of car.</param>
     [HttpPost]
     public IActionResult Post([FromBody] CarDto value)
     {
@@ -54,10 +54,10 @@ public class CarController(IRepository<Car, int> repository, IMapper mapper) : C
     }
 
     /// <summary>
-    /// Заменяет автомобиль с указанным идентификатором в коллекции.
+    /// replace car of identificator
     /// </summary>
-    /// <param name="id">Идентификатор заменяемого автомобиля.</param>
-    /// <param name="value">Новый экземпляр автомобиля, которым заменяется старый.</param>
+    /// <param name="id">identificator of car</param>
+    /// <param name="value">new exemplar of car.</param>
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody] CarDto value)
     {
@@ -71,9 +71,9 @@ public class CarController(IRepository<Car, int> repository, IMapper mapper) : C
     }
 
     /// <summary>
-    /// Удаляет автомобиль с указанным идентификатором из коллекции.
+    /// delete car
     /// </summary>
-    /// <param name="id">Идентификатор удаляемого автомобиля.</param>
+    /// <param name="id">identificator of delete car</param>
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {

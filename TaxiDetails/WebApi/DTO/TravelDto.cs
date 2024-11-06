@@ -5,45 +5,45 @@ namespace WebApi.DTO;
 public class TravelDto
 {
     /// <summary>
-    /// Точка отправления.
+    /// from
     /// </summary>
     [Required]
     [StringLength(100)]
     public required string DeparturePoint { get; set; }
 
     /// <summary>
-    /// Точка назначения.
+    /// to
     /// </summary>
     [Required]
     [StringLength(100)]
     public required string DestinationPoint { get; set; }
 
     /// <summary>
-    /// Дата поездки.
+    /// date of travel
     /// </summary>
     [Required]
     public required DateTime TripDate { get; set; }
 
     /// <summary>
-    /// Время поездки.
+    /// time of travel
     /// </summary>
     [Required]
     public required TimeSpan TravelTime { get; set; }
 
     /// <summary>
-    /// Стоимость поездки.
+    /// cost
     /// </summary>
     [Required]
     [Range(0.01, double.MaxValue)]
     public required decimal Cost { get; set; }
 
     /// <summary>
-    /// Идентификатор автомобиля, назначенного для поездки.
+    /// identificator of car
     /// </summary>
     public required int AssignedCarId { get; set; }
 
     /// <summary>
-    /// Идентификатор клиента (пользователя), заказавшего поездку.
+    /// identificator of client
     /// </summary>
     public required int ClientId { get; set; }
 }

@@ -6,7 +6,7 @@
         private int _id = 1;
 
         /// <summary>
-        /// Удаляет поездку по идентификатору.
+        /// delete travel of identificator.
         /// </summary>
         public bool Delete(int id)
         {
@@ -21,17 +21,17 @@
         }
 
         /// <summary>
-        /// Находит и возвращает поездку по идентификатору.
+        /// search and return of identificator
         /// </summary>
         public Travel? Get(int id) => _travels.Find(travel => travel.Id == id);
 
         /// <summary>
-        /// Возвращает все поездки.
+        /// return all travels
         /// </summary>
         public IEnumerable<Travel> GetAll() => _travels;
 
         /// <summary>
-        /// Добавляет новую поездку в репозиторий.
+        /// add new travel
         /// </summary>
         public void Post(Travel travel)
         {
@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// Обновляет существующую поездку по идентификатору.
+        /// update travel of identification
         /// </summary>
         public bool Put(Travel travel, int id)
         {

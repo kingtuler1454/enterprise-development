@@ -25,7 +25,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new DateConverter());
 });
 
-// ƒобавление репозиториев дл€ классов проекта TaxiDetails
 builder.Services.AddSingleton<IRepository<User, int>, UserRepository>();
 builder.Services.AddSingleton<IRepository<Driver, int>, DriverRepository>();
 builder.Services.AddSingleton<IRepository<Car, int>, CarRepository>();

@@ -6,7 +6,7 @@
         private int _id = 1;
 
         /// <summary>
-        /// Удаляет водителя по идентификатору.
+        /// delete driver of identificator.
         /// </summary>
         public bool Delete(int id)
         {
@@ -21,17 +21,17 @@
         }
 
         /// <summary>
-        /// Находит и возвращает водителя по идентификатору.
+        /// search and return driver on identificator
         /// </summary>
         public Driver? Get(int id) => _drivers.Find(driver => driver.Id == id);
 
         /// <summary>
-        /// Возвращает всех водителей.
+        /// return all drivers.
         /// </summary>
         public IEnumerable<Driver> GetAll() => _drivers;
 
         /// <summary>
-        /// Добавляет нового водителя в репозиторий.
+        /// add new driver.
         /// </summary>
         public void Post(Driver driver)
         {
@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// Обновляет существующего водителя по идентификатору.
+        ///update driver of identificator
         /// </summary>
         public bool Put(Driver driver, int id)
         {

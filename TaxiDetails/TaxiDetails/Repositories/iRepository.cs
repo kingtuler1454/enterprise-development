@@ -3,37 +3,37 @@
     public interface IRepository<T, TKey>
     {
         /// <summary>
-        /// Получить коллекцию всех объектов типа T.
+        /// get colletiocn
         /// </summary>
-        /// <returns>Список объектов типа T.</returns>
+        /// <returns>list of T.</returns>
         IEnumerable<T> GetAll();
 
         /// <summary>
-        /// Получить объект типа T по заданному индексу.
+        /// get T of indentificator
         /// </summary>
-        /// <param name="id">Идентификатор нужного объекта типа T.</param>
-        /// <returns>Объект типа T или null, если объект не найден.</returns>
+        /// <param name="id">identificator of id.</param>
+        /// <returns>Object T</returns>
         T? Get(TKey id);
 
         /// <summary>
-        /// Добавить объект типа T в коллекцию.
+        /// Add object T
         /// </summary>
-        /// <param name="obj">Экземпляр объекта типа T, который необходимо добавить в коллекцию.</param>
+        /// <param name="obj">Object of collection</param>
         void Post(T obj);
 
         /// <summary>
-        /// Заменить объект типа T с заданным индексом в коллекции.
+        /// refresh object
         /// </summary>
-        /// <param name="obj">Новый экземпляр объекта типа T, которым мы заменяем старый.</param>
-        /// <param name="id">Идентификатор заменяемого объекта типа T.</param>
-        /// <returns>True, если замена прошла успешно; иначе, false.</returns>
+        /// <param name="obj">New object of collection</param>
+        /// <param name="id">identificator of object</param>
+        /// <returns>True of False about operation</returns>
         bool Put(T obj, TKey id);
 
         /// <summary>
-        /// Удалить объект типа T с заданным индексом из коллекции.
+        /// delete object T
         /// </summary>
-        /// <param name="id">Идентификатор удаляемого объекта типа T.</param>
-        /// <returns>True, если удаление прошло успешно; иначе, false.</returns>
+        /// <param name="id">Identificator of delete</param>
+        /// <returns>True of False about operation</returns>
         bool Delete(TKey id);
     }
 }

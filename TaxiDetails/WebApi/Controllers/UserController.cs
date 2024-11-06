@@ -11,9 +11,9 @@ namespace WebApi.Controllers;
 public class UserController(IRepository<User, int> repository, IMapper mapper) : ControllerBase
 {
     /// <summary>
-    /// Возвращает список всех пользователей.
+    /// return list user
     /// </summary>
-    /// <returns>Список всех пользователей и HTTP статус.</returns>
+    /// <returns>list user and http status</returns>
     [HttpGet]
     public ActionResult<IEnumerable<User>> Get()
     {
@@ -21,10 +21,10 @@ public class UserController(IRepository<User, int> repository, IMapper mapper) :
     }
 
     /// <summary>
-    /// Возвращает информацию о пользователе по заданному идентификатору.
+    /// information of user 
     /// </summary>
-    /// <param name="id">Идентификатор нужного пользователя.</param>
-    /// <returns>Объект пользователя и HTTP статус.</returns>
+    /// <param name="id">identificator of user</param>
+    /// <returns>object user and http status</returns>
     [HttpGet("{id}")]
     public ActionResult<User> Get(int id)
     {
@@ -39,9 +39,9 @@ public class UserController(IRepository<User, int> repository, IMapper mapper) :
     }
 
     /// <summary>
-    /// Добавляет нового пользователя в коллекцию.
+    /// add user 
     /// </summary>
-    /// <param name="value">Экземпляр пользователя, который нужно добавить в коллекцию.</param>
+    /// <param name="value">object of user </param>
     [HttpPost]
     public IActionResult Post([FromBody] UserDto value)
     {
@@ -54,10 +54,10 @@ public class UserController(IRepository<User, int> repository, IMapper mapper) :
     }
 
     /// <summary>
-    /// Заменяет пользователя с указанным идентификатором в коллекции.
+    /// replace user
     /// </summary>
-    /// <param name="id">Идентификатор заменяемого пользователя.</param>
-    /// <param name="value">Новый экземпляр пользователя, которым заменяется старый.</param>
+    /// <param name="id">identificator  of user</param>
+    /// <param name="value">new user</param>
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody] UserDto value)
     {
@@ -71,9 +71,9 @@ public class UserController(IRepository<User, int> repository, IMapper mapper) :
     }
 
     /// <summary>
-    /// Удаляет пользователя с указанным идентификатором из коллекции.
+    /// delete user
     /// </summary>
-    /// <param name="id">Идентификатор удаляемого пользователя.</param>
+    /// <param name="id">identificator user</param>
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {

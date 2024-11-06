@@ -11,9 +11,9 @@ namespace WebApi.Controllers;
 public class DriverController(IRepository<Driver, int> repository, IMapper mapper) : ControllerBase
 {
     /// <summary>
-    /// Возвращает список всех водителей.
+    /// return all drivers
     /// </summary>
-    /// <returns>Список всех водителей и HTTP статус.</returns>
+    /// <returns>list of drivers and http status</returns>
     [HttpGet]
     public ActionResult<IEnumerable<Driver>> Get()
     {
@@ -21,10 +21,10 @@ public class DriverController(IRepository<Driver, int> repository, IMapper mappe
     }
 
     /// <summary>
-    /// Возвращает информацию о водителе по заданному идентификатору.
+    /// return driver of identificator
     /// </summary>
-    /// <param name="id">Идентификатор нужного водителя.</param>
-    /// <returns>Объект водителя и HTTP статус.</returns>
+    /// <param name="id">identificator of driver</param>
+    /// <returns>Object of driver and http status</returns>
     [HttpGet("{id}")]
     public ActionResult<Driver> Get(int id)
     {
@@ -39,9 +39,9 @@ public class DriverController(IRepository<Driver, int> repository, IMapper mappe
     }
 
     /// <summary>
-    /// Добавляет нового водителя в коллекцию.
+    ///add new driver
     /// </summary>
-    /// <param name="value">Экземпляр водителя, который нужно добавить в коллекцию.</param>
+    /// <param name="value">Object of driver for add</param>
     [HttpPost]
     public IActionResult Post([FromBody] DriverDto value)
     {
@@ -54,10 +54,10 @@ public class DriverController(IRepository<Driver, int> repository, IMapper mappe
     }
 
     /// <summary>
-    /// Заменяет водителя с указанным идентификатором в коллекции.
+    /// replace driver of identificator.
     /// </summary>
-    /// <param name="id">Идентификатор заменяемого водителя.</param>
-    /// <param name="value">Новый экземпляр водителя, которым заменяется старый.</param>
+    /// <param name="id">identificator of driver</param>
+    /// <param name="value">new driver</param>
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody] DriverDto value)
     {
@@ -71,9 +71,9 @@ public class DriverController(IRepository<Driver, int> repository, IMapper mappe
     }
 
     /// <summary>
-    /// Удаляет водителя с указанным идентификатором из коллекции.
+    /// delete driver of collection
     /// </summary>
-    /// <param name="id">Идентификатор удаляемого водителя.</param>
+    /// <param name="id">identificator of driver</param>
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {

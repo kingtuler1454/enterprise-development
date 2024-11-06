@@ -6,7 +6,7 @@
         private int _id = 1;
 
         /// <summary>
-        /// Удаляет автомобиль по идентификатору.
+        /// delete auto of identificator
         /// </summary>
         public bool Delete(int id)
         {
@@ -21,17 +21,17 @@
         }
 
         /// <summary>
-        /// Находит и возвращает автомобиль по идентификатору.
+        ///search and return of identificator
         /// </summary>
         public Car? Get(int id) => _cars.Find(car => car.Id == id);
 
         /// <summary>
-        /// Возвращает все автомобили.
+        /// return all cars
         /// </summary>
         public IEnumerable<Car> GetAll() => _cars;
 
         /// <summary>
-        /// Добавляет новый автомобиль в репозиторий.
+        /// add new car
         /// </summary>
         public void Post(Car car)
         {
@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// Обновляет существующий автомобиль по идентификатору.
+        /// update auto
         /// </summary>
         public bool Put(Car car, int id)
         {

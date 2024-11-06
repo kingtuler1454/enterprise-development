@@ -5,14 +5,14 @@ namespace WebApi.DTO;
 public class UserDto
 {
     /// <summary>
-    /// Номер телефона пользователя.
+    /// number phone
     /// </summary>
     [Required]
     [Phone]
     public required string Phone { get; set; }
 
     /// <summary>
-    /// Полное имя пользователя.
+    /// fullname client
     /// </summary>
     [Required]
     [StringLength(100)]

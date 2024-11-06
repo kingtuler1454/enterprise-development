@@ -10,9 +10,9 @@ namespace WebApi.Controllers;
 public class TravelController(IRepository<Travel, int> repository, IMapper mapper) : ControllerBase
 {
     /// <summary>
-    /// Возвращает список всех поездок.
+    /// return travel
     /// </summary>
-    /// <returns>Список всех поездок и HTTP статус.</returns>
+    /// <returns>list of travel and http status</returns>
     [HttpGet]
     public ActionResult<IEnumerable<Travel>> Get()
     {
@@ -20,10 +20,10 @@ public class TravelController(IRepository<Travel, int> repository, IMapper mappe
     }
 
     /// <summary>
-    /// Возвращает информацию о поездке по заданному идентификатору.
+    /// return information 
     /// </summary>
-    /// <param name="id">Идентификатор нужной поездки.</param>
-    /// <returns>Объект поездки и HTTP статус.</returns>
+    /// <param name="id">identificator travel</param>
+    /// <returns>object travel and http status</returns>
     [HttpGet("{id}")]
     public ActionResult<Travel> Get(int id)
     {
@@ -38,9 +38,9 @@ public class TravelController(IRepository<Travel, int> repository, IMapper mappe
     }
 
     /// <summary>
-    /// Добавляет новую поездку в коллекцию.
+    /// add new trip
     /// </summary>
-    /// <param name="value">Экземпляр поездки, который нужно добавить в коллекцию.</param>
+    /// <param name="value">object travel</param>
     [HttpPost]
     public IActionResult Post([FromBody] TravelDto value)
     {
@@ -53,10 +53,10 @@ public class TravelController(IRepository<Travel, int> repository, IMapper mappe
     }
 
     /// <summary>
-    /// Заменяет поездку с указанным идентификатором в коллекции.
+    /// replace travel 
     /// </summary>
-    /// <param name="id">Идентификатор заменяемой поездки.</param>
-    /// <param name="value">Новый экземпляр поездки, которым заменяется старая.</param>
+    /// <param name="id">identificator of travel.</param>
+    /// <param name="value">new object of travel</param>
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody] TravelDto value)
     {
@@ -72,7 +72,7 @@ public class TravelController(IRepository<Travel, int> repository, IMapper mappe
     /// <summary>
     /// Удаляет поездку с указанным идентификатором из коллекции.
     /// </summary>
-    /// <param name="id">Идентификатор удаляемой поездки.</param>
+    /// <param name="id">identificator of travel</param>
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {

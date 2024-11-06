@@ -5,42 +5,42 @@ namespace WebApi.DTO;
 public class DriverDto
 {
     /// <summary>
-    /// Имя водителя.
+    /// name driver
     /// </summary>
     [Required]
     [StringLength(50)]
     public required string Name { get; set; }
 
     /// <summary>
-    /// Фамилия водителя.
+    /// surname driver
     /// </summary>
     [Required]
     [StringLength(50)]
     public required string Surname { get; set; }
 
     /// <summary>
-    /// Отчество водителя.
+    ///patronymic driver
     /// </summary>
     [Required]
     [StringLength(50)]
     public required string Patronymic { get; set; }
 
     /// <summary>
-    /// Паспортные данные водителя.
+    /// passport information
     /// </summary>
     [Required]
     [StringLength(20)]
     public required string Passport { get; set; }
 
     /// <summary>
-    /// Адрес водителя.
+    /// addres
     /// </summary>
     [Required]
     [StringLength(100)]
     public required string Address { get; set; }
 
     /// <summary>
-    /// Номер телефона водителя.
+    /// number of phone
     /// </summary>
     [Required]
     [Phone]

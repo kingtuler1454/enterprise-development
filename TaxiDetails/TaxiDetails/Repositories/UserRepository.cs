@@ -6,7 +6,7 @@
         private int _id = 1;
 
         /// <summary>
-        /// Удаляет пользователя по идентификатору.
+        /// delete user of identificator
         /// </summary>
         public bool Delete(int id)
         {
@@ -21,17 +21,17 @@
         }
 
         /// <summary>
-        /// Находит и возвращает пользователя по идентификатору.
+        /// search and refresh of identificator
         /// </summary>
         public User? Get(int id) => _users.Find(user => user.Id == id);
 
         /// <summary>
-        /// Возвращает всех пользователей.
+        /// return all users
         /// </summary>
         public IEnumerable<User> GetAll() => _users;
 
         /// <summary>
-        /// Добавляет нового пользователя в репозиторий.
+        /// add new user
         /// </summary>
         public void Post(User user)
         {
@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// Обновляет существующего пользователя по идентификатору.
+        /// update of user
         /// </summary>
         public bool Put(User user, int id)
         {
