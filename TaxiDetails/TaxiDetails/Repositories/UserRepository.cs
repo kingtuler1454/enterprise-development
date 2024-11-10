@@ -1,57 +1,55 @@
-﻿namespace TaxiDetails.Domain.Repositories
+﻿namespace TaxiDetails.Domain;
+public class UserRepository : IRepository<User, int>
 {
-    public class UserRepository : IRepository<User, int>
+    private readonly List<User> _users = [];
+    private int _id = 1;
+
+    /// <summary>
+    /// delete user of identificator
+    /// </summary>
+    public bool Delete(int id)
     {
-        private readonly List<User> _users = new();
-        private int _id = 1;
+        var user = Get(id);
 
-        /// <summary>
-        /// delete user of identificator
-        /// </summary>
-        public bool Delete(int id)
+        if (user == null)
         {
-            var user = Get(id);
-
-            if (user == null)
-            {
-                return false;
-            }
-            _users.Remove(user);
-            return true;
+            return false;
         }
+        _users.Remove(user);
+        return true;
+    }
 
-        /// <summary>
-        /// search and refresh of identificator
-        /// </summary>
-        public User? Get(int id) => _users.Find(user => user.Id == id);
+    /// <summary>
+    /// search and refresh of identificator
+    /// </summary>
+    public User? Get(int id) => _users.Find(user => user.Id == id);
 
-        /// <summary>
-        /// return all users
-        /// </summary>
-        public IEnumerable<User> GetAll() => _users;
+    /// <summary>
+    /// return all users
+    /// </summary>
+    public IEnumerable<User> GetAll() => _users;
 
-        /// <summary>
-        /// add new user
-        /// </summary>
-        public void Post(User user)
+    /// <summary>
+    /// add new user
+    /// </summary>
+    public void Post(User user)
+    {
+        user.Id = _id++;
+        _users.Add(user);
+    }
+
+    /// <summary>
+    /// update of user
+    /// </summary>
+    public bool Put(User user, int id)
+    {
+        var existingUser = Get(id);
+        if (existingUser == null)
         {
-            user.Id = _id++;
-            _users.Add(user);
+            return false;
         }
-
-        /// <summary>
-        /// update of user
-        /// </summary>
-        public bool Put(User user, int id)
-        {
-            var existingUser = Get(id);
-            if (existingUser == null)
-            {
-                return false;
-            }
-            existingUser.Phone = user.Phone;
-            existingUser.FullName = user.FullName;
-            return true;
-        }
+        existingUser.Phone = user.Phone;
+        existingUser.FullName = user.FullName;
+        return true;
     }
 }

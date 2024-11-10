@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaxiDetails.Domain.Repositories;
+using TaxiDetails.Domain;
 using AutoMapper;
-using WebApi.DTO;
+using TaxiDetails.WebApi.DTO;
 using TaxiDetails;
-namespace WebApi.Controllers;
+namespace TaxiDetails.WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

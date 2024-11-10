@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using TaxiDetails;
-using WebApi.DTO;
+using TaxiDetails.WebApi.DTO;
 
-namespace WebApi;
+namespace TaxiDetails.WebApi;
 
 public class Mapping : Profile
 {

@@ -1,9 +1,8 @@
 using TaxiDetails;
-using TaxiDetails.Domain.Repositories;
+using TaxiDetails.Domain;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-using TaxiDetails.Server;
-using WebApi;
+using TaxiDetails.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 

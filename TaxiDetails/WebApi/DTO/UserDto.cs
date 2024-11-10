@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.DTO;
+namespace TaxiDetails.WebApi.DTO;
 
 public class UserDto
 {

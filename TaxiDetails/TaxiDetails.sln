@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiDetails", "TaxiDetails\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiDetails.Tests", "TaxiDetails.Tests\TaxiDetails.Tests.csproj", "{EE0C4A71-1EAF-440E-A535-24F1A54D187F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{88397BCF-0231-414D-8014-F2F746DC8A08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiDetails.WebApi", "WebApi\TaxiDetails.WebApi.csproj", "{88397BCF-0231-414D-8014-F2F746DC8A08}"
 	ProjectSection(ProjectDependencies) = postProject
 		{53D63990-369F-4D7C-A2D3-52CA7E41997D} = {53D63990-369F-4D7C-A2D3-52CA7E41997D}
 	EndProjectSection
