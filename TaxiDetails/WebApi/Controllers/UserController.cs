@@ -5,6 +5,9 @@ using TaxiDetails.WebApi.DTO;
 
 namespace TaxiDetails.WebApi.Controllers;
 
+/// <summary>
+/// Controller for managing users.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class UserController(IRepository<User, int> repository, IMapper mapper) : ControllerBase

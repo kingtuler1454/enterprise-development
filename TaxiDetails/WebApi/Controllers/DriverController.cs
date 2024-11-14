@@ -5,6 +5,9 @@ using TaxiDetails.WebApi.DTO;
 
 namespace TaxiDetails.WebApi.Controllers;
 
+/// <summary>
+/// Controller for managing drivers.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class DriverController(IRepository<Driver, int> repository, IMapper mapper) : ControllerBase

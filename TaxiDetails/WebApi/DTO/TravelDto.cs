@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace TaxiDetails.WebApi.DTO;
-
+/// <summary>
+/// Data transfer object for travel information.
+/// </summary>
 public class TravelDto
 {
     /// <summary>

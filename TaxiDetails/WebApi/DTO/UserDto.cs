@@ -2,6 +2,9 @@
 
 namespace TaxiDetails.WebApi.DTO;
 
+/// <summary>
+/// Data transfer object for user information.
+/// </summary>
 public class UserDto
 {
     /// <summary>

@@ -3,8 +3,14 @@ using TaxiDetails.WebApi.DTO;
 
 namespace TaxiDetails.WebApi;
 
+/// <summary>
+///mapping of data
+/// </summary>
 public class Mapping : Profile
 {
+    /// <summary>
+    /// createmaps
+    /// </summary>
     public Mapping()
     {
         CreateMap<Car, CarDto>().ReverseMap();
