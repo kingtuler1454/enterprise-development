@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaxiDetails.Domain;
 using AutoMapper;
-using TaxiDetails;
 using TaxiDetails.WebApi.DTO;
 
 namespace TaxiDetails.WebApi.Controllers;
