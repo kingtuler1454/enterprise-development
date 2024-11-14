@@ -2,7 +2,7 @@
 using TaxiDetails.Domain;
 using AutoMapper;
 using TaxiDetails.WebApi.DTO;
-using TaxiDetails;
+
 namespace TaxiDetails.WebApi.Controllers;
 
 [Route("api/[controller]")]
