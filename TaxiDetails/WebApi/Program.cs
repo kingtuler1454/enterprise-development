@@ -1,5 +1,5 @@
 using TaxiDetails;
-using TaxiDetails.Domain;
+using TaxiDetails.Repositories;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using TaxiDetails.WebApi;

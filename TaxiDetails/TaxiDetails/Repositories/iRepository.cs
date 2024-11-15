@@ -1,4 +1,4 @@
-﻿namespace TaxiDetails.Domain;
+﻿namespace TaxiDetails.Repositories;
 public interface IRepository<T, TKey>
 {
     /// <summary>

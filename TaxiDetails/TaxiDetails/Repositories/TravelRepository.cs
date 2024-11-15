@@ -1,4 +1,4 @@
-﻿namespace TaxiDetails.Domain;
+﻿namespace TaxiDetails.Repositories;
 public class TravelRepository : IRepository<Travel, int>
 {
     private readonly List<Travel> _travels = [];

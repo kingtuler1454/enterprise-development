@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaxiDetails.Domain;
+using TaxiDetails.Repositories;
 using AutoMapper;
 using TaxiDetails.WebApi.DTO;
 

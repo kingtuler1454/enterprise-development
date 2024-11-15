@@ -1,4 +1,4 @@
-﻿namespace TaxiDetails.Domain;
+﻿namespace TaxiDetails.Repositories;
 public class CarRepository : IRepository<Car, int>
 {
     private readonly List<Car> _cars = [];
