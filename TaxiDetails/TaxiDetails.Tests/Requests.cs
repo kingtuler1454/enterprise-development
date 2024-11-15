@@ -119,8 +119,9 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
             .Select(g => (
                 Driver: g.Key.Name,
                 TripCount: g.Count(),
-                AvgDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Average(t => t.TravelTime.TotalMinutes))),
-                MaxDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Max(t => t.TravelTime.TotalMinutes)))
+                AvgDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Average(t => t.TravelTime.HasValue ? t.TravelTime.Value.TotalMinutes : 0))),
+                MaxDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Max(t => t.TravelTime.HasValue ? t.TravelTime.Value.TotalMinutes : 0)))
+
             ))
             .ToList();
         Assert.Equal(expectedData, driverTripStats);

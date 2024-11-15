@@ -7,63 +7,437 @@ public class TaxiDetailsData
     public List<Travel> Travels { get; set; }
 
     public TaxiDetailsData()
-    {     
+    {
         Drivers =
         [
-            new Driver(1, "Максим", "Смирнов", "Александрович", "1234567890", "ул. Пушкина, д. 1", "+7 123 456 78 90"),
-            new Driver(2, "Артем", "Кузнецов", "Олегович", "0987654321", "ул. Лермонтова, д. 5", "+7 987 654 32 10"),
-            new Driver(3, "Даниил", "Новиков", "Игоревич", "1522334455", "ул. Чехова, д. 10", "+7 111 222 33 44"),
-            new Driver(4, "Кирилл", "Морозов", "Владимирович", "130587654", "ул. Лесная, д. 12", "+7 555 777 88 99"),
-            new Driver(5, "Илья", "Соколов", "Андреевич", "4455665758", "ул. Цветочная, д. 8", "+7 123 789 45 67"),
-            new Driver(6, "Никита", "Орлов", "Павлович", "9388775655", "ул. Южная, д. 3", "+7 333 444 55 66"),
-            new Driver(7, "Матвей", "Попов", "Александрович", "2633443566", "ул. Центральная, д. 6", "+7 111 222 11 33"),
-            new Driver(8, "Тимофей", "Васильев", "Владиславович", "6677439930", "ул. Полевая, д. 7", "+7 999 888 77 44"),
-            new Driver(9, "Александр", "Зайцев", "Николаевич", "5566578899", "ул. Овражная, д. 4", "+7 222 333 44 11"),
-            new Driver(10, "Егор", "Смирнов", "Сергеевич", "3344356611", "ул. Радужная, д. 9", "+7 777 666 55 99")
-        ];            
-        Cars =
-        [
-            new Car(1, "X123AB77", "Tesla Model S", "Черный", Drivers[0]),
-            new Car(2, "B456CD99", "Hyundai Tucson", "Белый", Drivers[1]),
-            new Car(3, "M789EF33", "BMW X5", "Серебристый", Drivers[2]),
-            new Car(4, "N987GH22", "Toyota Prius", "Красный", Drivers[3]),
-            new Car(5, "P111KL55", "Audi A4", "Синий", Drivers[4]),
-            new Car(6, "C222MN66", "Mercedes-Benz GLC", "Зеленый", Drivers[5]),
-            new Car(7, "L333OP77", "Ford Mustang", "Оранжевый", Drivers[6]),
-            new Car(8, "V444QR88", "Volkswagen Passat", "Желтый", Drivers[7]),
-            new Car(9, "T555ST99", "Honda Civic", "Серый", Drivers[8]),
-            new Car(10, "R666UV00", "Kia Sportage", "Бежевый", Drivers[9])
+            new()
+            {
+                Id = 1,
+                Name = "Максим",
+                Surname = "Смирнов",
+                Patronymic = "Александрович",
+                Passport = "1234567890",
+                Address = "ул. Пушкина, д. 1",
+                Phone = "+7 123 456 78 90"
+            },
+            new()
+            {
+                Id = 2,
+                Name = "Артем",
+                Surname = "Кузнецов",
+                Patronymic = "Олегович",
+                Passport = "0987654321",
+                Address = "ул. Лермонтова, д. 5",
+                Phone = "+7 987 654 32 10"
+            },
+            new()
+            {
+                Id = 3,
+                Name = "Даниил",
+                Surname = "Новиков",
+                Patronymic = "Игоревич",
+                Passport = "1522334455",
+                Address = "ул. Чехова, д. 10",
+                Phone = "+7 111 222 33 44"
+            },
+            new()
+            {
+                Id = 4,
+                Name = "Кирилл",
+                Surname = "Морозов",
+                Patronymic = "Владимирович",
+                Passport = "130587654",
+                Address = "ул. Лесная, д. 12",
+                Phone = "+7 555 777 88 99"
+            },
+            new()
+            {
+                Id = 5,
+                Name = "Илья",
+                Surname = "Соколов",
+                Patronymic = "Андреевич",
+                Passport = "4455665758",
+                Address = "ул. Цветочная, д. 8",
+                Phone = "+7 123 789 45 67"
+            },
+            new()
+            {
+                Id = 6,
+                Name = "Никита",
+                Surname = "Орлов",
+                Patronymic = "Павлович",
+                Passport = "9388775655",
+                Address = "ул. Южная, д. 3",
+                Phone = "+7 333 444 55 66"
+            },
+            new()
+            {
+                Id = 7,
+                Name = "Матвей",
+                Surname = "Попов",
+                Patronymic = "Александрович",
+                Passport = "2633443566",
+                Address = "ул. Центральная, д. 6",
+                Phone = "+7 111 222 11 33"
+            },
+            new()
+            {
+                Id = 8,
+                Name = "Тимофей",
+                Surname = "Васильев",
+                Patronymic = "Владиславович",
+                Passport = "6677439930",
+                Address = "ул. Полевая, д. 7",
+                Phone = "+7 999 888 77 44"
+            },
+            new()
+            {
+                Id = 9,
+                Name = "Александр",
+                Surname = "Зайцев",
+                Patronymic = "Николаевич",
+                Passport = "5566578899",
+                Address = "ул. Овражная, д. 4",
+                Phone = "+7 222 333 44 11"
+            },
+            new()
+            {
+                Id = 10,
+                Name = "Егор",
+                Surname = "Смирнов",
+                Patronymic = "Сергеевич",
+                Passport = "3344356611",
+                Address = "ул. Радужная, д. 9",
+                Phone = "+7 777 666 55 99"
+            }
         ];
+
+        Drivers =
+        [
+            new()
+            {
+                Id = 1,
+                Name = "Максим",
+                Surname = "Смирнов",
+                Patronymic = "Александрович",
+                Passport = "1234567890",
+                Address = "ул. Пушкина, д. 1",
+                Phone = "+7 123 456 78 90"
+            },
+            new()
+            {
+                Id = 2,
+                Name = "Артем",
+                Surname = "Кузнецов",
+                Patronymic = "Олегович",
+                Passport = "0987654321",
+                Address = "ул. Лермонтова, д. 5",
+                Phone = "+7 987 654 32 10"
+            },
+            new()
+            {
+                Id = 3,
+                Name = "Даниил",
+                Surname = "Новиков",
+                Patronymic = "Игоревич",
+                Passport = "1522334455",
+                Address = "ул. Чехова, д. 10",
+                Phone = "+7 111 222 33 44"
+            },
+            new()
+            {
+                Id = 4,
+                Name = "Кирилл",
+                Surname = "Морозов",
+                Patronymic = "Владимирович",
+                Passport = "130587654",
+                Address = "ул. Лесная, д. 12",
+                Phone = "+7 555 777 88 99"
+            },
+            new()
+            {
+                Id = 5,
+                Name = "Илья",
+                Surname = "Соколов",
+                Patronymic = "Андреевич",
+                Passport = "4455665758",
+                Address = "ул. Цветочная, д. 8",
+                Phone = "+7 123 789 45 67"
+            },
+            new()
+            {
+                Id = 6,
+                Name = "Никита",
+                Surname = "Орлов",
+                Patronymic = "Павлович",
+                Passport = "9388775655",
+                Address = "ул. Южная, д. 3",
+                Phone = "+7 333 444 55 66"
+            },
+            new()
+            {
+                Id = 7,
+                Name = "Матвей",
+                Surname = "Попов",
+                Patronymic = "Александрович",
+                Passport = "2633443566",
+                Address = "ул. Центральная, д. 6",
+                Phone = "+7 111 222 11 33"
+            },
+            new()
+            {
+                Id = 8,
+                Name = "Тимофей",
+                Surname = "Васильев",
+                Patronymic = "Владиславович",
+                Passport = "6677439930",
+                Address = "ул. Полевая, д. 7",
+                Phone = "+7 999 888 77 44"
+            },
+            new()
+            {
+                Id = 9,
+                Name = "Александр",
+                Surname = "Зайцев",
+                Patronymic = "Николаевич",
+                Passport = "5566578899",
+                Address = "ул. Овражная, д. 4",
+                Phone = "+7 222 333 44 11"
+            },
+            new()
+            {
+                Id = 10,
+                Name = "Егор",
+                Surname = "Смирнов",
+                Patronymic = "Сергеевич",
+                Passport = "3344356611",
+                Address = "ул. Радужная, д. 9",
+                Phone = "+7 777 666 55 99"
+            }
+        ];
+
         Users =
-        [
-            new User(1,"+7 912 345 67 89", "Анна Сергеева"),
-            new User(2,"+7 923 456 78 90", "Елена Михайлова"),
-            new User(3,"+7 934 567 89 01", "Дмитрий Воронов"),
-            new User(4,"+7 945 678 90 12", "Марина Кузьмина"),
-            new User(5,"+7 956 789 01 23", "Алексей Петров"),
-            new User(6,"+7 967 890 12 34", "Ольга Лебедева"),
-            new User(7,"+7 978 901 23 45", "Юлия Павлова"),
-            new User(8,"+7 989 012 34 56", "Иван Иванов"),
-            new User(9,"+7 999 123 45 67", "Светлана Смирнова"),
-            new User(10,"+7 900 234 56 78", "Константин Волков")
+         [
+            new()
+            {
+                Id = 1,
+                Phone = "+7 912 345 67 89",
+                FullName = "Анна Сергеева"
+            },
+            new()
+            {
+                Id = 2,
+                Phone = "+7 923 456 78 90",
+                FullName = "Елена Михайлова"
+            },
+            new()
+            {
+                Id = 3,
+                Phone = "+7 934 567 89 01",
+                FullName = "Дмитрий Воронов"
+            },
+            new()
+            {
+                Id = 4,
+                Phone = "+7 945 678 90 12",
+                FullName = "Марина Кузьмина"
+            },
+            new()
+            {
+                Id = 5,
+                Phone = "+7 956 789 01 23",
+                FullName = "Алексей Петров"
+            },
+            new()
+            {
+                Id = 6,
+                Phone = "+7 967 890 12 34",
+                FullName = "Ольга Лебедева"
+            },
+            new()
+            {
+                Id = 7,
+                Phone = "+7 978 901 23 45",
+                FullName = "Юлия Павлова"
+            },
+            new()
+            {
+                Id = 8,
+                Phone = "+7 989 012 34 56",
+                FullName = "Иван Иванов"
+            },
+            new()
+            {
+                Id = 9,
+                Phone = "+7 999 123 45 67",
+                FullName = "Светлана Смирнова"
+            },
+            new()
+            {
+                Id = 10,
+                Phone = "+7 900 234 56 78",
+                FullName = "Константин Волков"
+            }
         ];
+
         Travels =
         [
-            new Travel(1, "ул. Новая, д. 5", "пр-т Мира, д. 10", new DateTime(2024, 10, 1), new TimeSpan(0, 20, 0), 400, Cars[0],Users[0]),
-            new Travel(12, "пр-т Суворова, д. 6", "ул. Кирова, д. 9", new DateTime(2024, 10, 13), new TimeSpan(0, 26, 0), 500, Cars[0],Users[1]),
-            new Travel(13, "ул. Орлова, д. 13", "ул. Цветочная, д. 2", new DateTime(2024, 10, 14), new TimeSpan(0, 50, 0), 550, Cars[0],Users[2]),
-            new Travel(2, "ул. Лесная, д. 8", "ул. Рябиновая, д. 3", new DateTime(2024, 10,2), new TimeSpan(0, 16, 0), 300, Cars[1],Users[0]),
-            new Travel(14, "ул. Колхозная, д. 7", "пр-т Победы, д. 4", new DateTime(2024, 10, 15), new TimeSpan(0, 30, 0), 600, Cars[1],Users[0]),
-            new Travel(11, "ул. Речная, д. 18", "ул. Полевая, д. 5", new DateTime(2024, 10, 12), new TimeSpan(0, 20, 0), 400, Cars[2],Users[0]),
-            new Travel(3, "ул. Школьная, д. 12", "ул. Солнечная, д. 4", new DateTime(2024, 10,3), new TimeSpan(0, 26, 0), 500, Cars[2],Users[2]),
-            new Travel(4, "пр-т Ленина, д. 21", "ул. Клубничная, д. 7", new DateTime(2024, 10, 4), new TimeSpan(0, 30, 0), 600, Cars[3],Users[3]),
-            new Travel(5, "ул. Парковая, д. 9", "пр-т Гагарина, д. 15", new DateTime(2024, 10, 5), new TimeSpan(0, 20, 0), 350, Cars[4],Users[4]),
-            new Travel(6, "ул. Лермонтова, д. 2", "ул. Чехова, д. 10", new DateTime(2024, 10, 6), new TimeSpan(0, 26, 0), 450, Cars[5],Users[5]),
-            new Travel(7, "ул. Речная, д. 18", "ул. Полевая, д. 5", new DateTime(2024, 10, 7), new TimeSpan(0, 20, 0), 400, Cars[6],Users[6]),
-            new Travel(8, "пр-т Суворова, д. 6", "ул. Кирова, д. 9", new DateTime(2024, 10, 8), new TimeSpan(0, 26, 0), 500, Cars[7],Users[7]),
-            new Travel(9, "ул. Орлова, д. 13", "ул. Цветочная, д. 2", new DateTime(2024, 10, 9), new TimeSpan(0, 30, 0), 550, Cars[8],Users[8]),
-            new Travel(10, "ул. Колхозная, д. 7", "пр-т Победы, д. 4", new DateTime(2024, 10, 11), new TimeSpan(0, 30, 0), 600, Cars[9],Users[9])    
+            new()
+            {
+                Id = 1,
+                DeparturePoint = "ул. Новая, д. 5",
+                DestinationPoint = "пр-т Мира, д. 10",
+                TripDate = new DateTime(2024, 10, 1),
+                TravelTime = new TimeSpan(0, 20, 0),
+                Cost = 400,
+                AssignedCar = Cars[0],
+                Client = Users[0]
+            },
+            new()
+            {
+                Id = 12,
+                DeparturePoint = "пр-т Суворова, д. 6",
+                DestinationPoint = "ул. Кирова, д. 9",
+                TripDate = new DateTime(2024, 10, 13),
+                TravelTime = new TimeSpan(0, 26, 0),
+                Cost = 500,
+                AssignedCar = Cars[0],
+                Client = Users[1]
+            },
+            new()
+            {
+                Id = 13,
+                DeparturePoint = "ул. Орлова, д. 13",
+                DestinationPoint = "ул. Цветочная, д. 2",
+                TripDate = new DateTime(2024, 10, 14),
+                TravelTime = new TimeSpan(0, 50, 0),
+                Cost = 550,
+                AssignedCar = Cars[0],
+                Client = Users[2]
+            },
+            new()
+            {
+                Id = 2,
+                DeparturePoint = "ул. Лесная, д. 8",
+                DestinationPoint = "ул. Рябиновая, д. 3",
+                TripDate = new DateTime(2024, 10, 2),
+                TravelTime = new TimeSpan(0, 16, 0),
+                Cost = 300,
+                AssignedCar = Cars[1],
+                Client = Users[0]
+            },
+            new()
+            {
+                Id = 14,
+                DeparturePoint = "ул. Колхозная, д. 7",
+                DestinationPoint = "пр-т Победы, д. 4",
+                TripDate = new DateTime(2024, 10, 15),
+                TravelTime = new TimeSpan(0, 30, 0),
+                Cost = 600,
+                AssignedCar = Cars[1],
+                Client = Users[0]
+            },
+            new()
+            {
+                Id = 11,
+                DeparturePoint = "ул. Речная, д. 18",
+                DestinationPoint = "ул. Полевая, д. 5",
+                TripDate = new DateTime(2024, 10, 12),
+                TravelTime = new TimeSpan(0, 20, 0),
+                Cost = 400,
+                AssignedCar = Cars[2],
+                Client = Users[0]
+            },
+            new()
+            {
+                Id = 3,
+                DeparturePoint = "ул. Школьная, д. 12",
+                DestinationPoint = "ул. Солнечная, д. 4",
+                TripDate = new DateTime(2024, 10, 3),
+                TravelTime = new TimeSpan(0, 26, 0),
+                Cost = 500,
+                AssignedCar = Cars[2],
+                Client = Users[2]
+            },
+            new()
+            {
+                Id = 4,
+                DeparturePoint = "пр-т Ленина, д. 21",
+                DestinationPoint = "ул. Клубничная, д. 7",
+                TripDate = new DateTime(2024, 10, 4),
+                TravelTime = new TimeSpan(0, 30, 0),
+                Cost = 600,
+                AssignedCar = Cars[3],
+                Client = Users[3]
+            },
+            new()
+            {
+                Id = 5,
+                DeparturePoint = "ул. Парковая, д. 9",
+                DestinationPoint = "пр-т Гагарина, д. 15",
+                TripDate = new DateTime(2024, 10, 5),
+                TravelTime = new TimeSpan(0, 20, 0),
+                Cost = 350,
+                AssignedCar = Cars[4],
+                Client = Users[4]
+            },
+            new()
+            {
+                Id = 6,
+                DeparturePoint = "ул. Лермонтова, д. 2",
+                DestinationPoint = "ул. Чехова, д. 10",
+                TripDate = new DateTime(2024, 10, 6),
+                TravelTime = new TimeSpan(0, 26, 0),
+                Cost = 450,
+                AssignedCar = Cars[5],
+                Client = Users[5]
+            },
+            new()
+            {
+                Id = 7,
+                DeparturePoint = "ул. Речная, д. 18",
+                DestinationPoint = "ул. Полевая, д. 5",
+                TripDate = new DateTime(2024, 10, 7),
+                TravelTime = new TimeSpan(0, 20, 0),
+                Cost = 400,
+                AssignedCar = Cars[6],
+                Client = Users[6]
+            },
+            new()
+            {
+                Id = 8,
+                DeparturePoint = "пр-т Суворова, д. 6",
+                DestinationPoint = "ул. Кирова, д. 9",
+                TripDate = new DateTime(2024, 10, 8),
+                TravelTime = new TimeSpan(0, 26, 0),
+                Cost = 500,
+                AssignedCar = Cars[7],
+                Client = Users[7]
+            },
+            new()
+            {
+                Id = 9,
+                DeparturePoint = "ул. Орлова, д. 13",
+                DestinationPoint = "ул. Цветочная, д. 2",
+                TripDate = new DateTime(2024, 10, 9),
+                TravelTime = new TimeSpan(0, 30, 0),
+                Cost = 550,
+                AssignedCar = Cars[8],
+                Client = Users[8]
+            },
+            new()
+            {
+                Id = 10,
+                DeparturePoint = "ул. Колхозная, д. 7",
+                DestinationPoint = "пр-т Победы, д. 4",
+                TripDate = new DateTime(2024, 10, 11),
+                TravelTime = new TimeSpan(0, 30, 0),
+                Cost = 600,
+                AssignedCar = Cars[9],
+                Client = Users[9]
+            }
         ];
+
     }
 }
 
