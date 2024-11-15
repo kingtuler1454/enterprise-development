@@ -2,34 +2,35 @@ namespace TaxiDetails;
 /// <summary>
 /// class driver about info of driver
 /// </summary>
-public class Driver(int id, string name, string surname, string patronymic, string passport, string address, string phone)
+public class Driver
 {
     /// <summary>
     /// identificator
     /// </summary>
-    public int Id { get; set; } = id;
+    public int Id { get; set; }
     /// <summary>
     /// name of driver
     /// </summary>
-    public string Name { get; set; } = name;
+    public string? Name { get; set; }
     /// <summary>
     /// surname of driver
     /// </summary>
-    public string Surname { get; set; } = surname;
+    public string? Surname { get; set; } 
     /// <summary>
     /// patronymic of driver
     /// </summary>
-    public string Patronymic { get; set; } = patronymic;
+    public string? Patronymic { get; set; }
     /// <summary>
     /// passport of driver
     /// </summary>
-    public string Passport { get; set; } = passport;
+    public string? Passport { get; set; }
     /// <summary>
     /// address of driver
     /// </summary>
-    public string Address { get; set; } = address;
+    public string? Address { get; set; }
     /// <summary>
     /// phone of driver
     /// </summary>
-    public string Phone { get; set; } = phone;
+    public string? Phone { get; set; }
+    
 }
