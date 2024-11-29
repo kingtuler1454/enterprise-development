@@ -1,49 +1,50 @@
-﻿namespace TaxiDetails.Repositories;
-public class DriverRepository : IRepository<Driver, int>
+﻿using Microsoft.EntityFrameworkCore;
+using TaxiDetails.Context; 
+namespace TaxiDetails.Repositories;
+public class DriverRepository(TaxiDetailsDbContext context) : IRepository<Driver, int>
 {
-    private readonly List<Driver> _drivers = [];
-    private int _id = 1;
-
     /// <summary>
     /// delete driver of identificator.
     /// </summary>
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        var driver = Get(id);
+        var driver = await Get(id);
 
         if (driver == null)
         {
             return false;
         }
-        _drivers.Remove(driver);
+        context.Drivers.Remove(driver);
+        await context.SaveChangesAsync();
         return true;
     }
 
     /// <summary>
     /// search and return driver on identificator
     /// </summary>
-    public Driver? Get(int id) => _drivers.Find(driver => driver.Id == id);
+    public async Task<Driver?> Get(int id) => await context.Drivers.FirstOrDefaultAsync(driver => driver.Id == id);
 
     /// <summary>
     /// return all drivers.
     /// </summary>
-    public IEnumerable<Driver> GetAll() => _drivers;
+    public async Task<IEnumerable<Driver>> GetAll() => await context.Drivers.ToListAsync();
 
     /// <summary>
     /// add new driver.
     /// </summary>
-    public void Post(Driver driver)
+    public async Task<Driver> Post(Driver driver)
     {
-        driver.Id = _id++;
-        _drivers.Add(driver);
+        context.Drivers.Add(driver);
+        await context.SaveChangesAsync();
+        return driver;
     }
 
     /// <summary>
     ///update driver of identificator
     /// </summary>
-    public bool Put(Driver driver, int id)
+    public async Task<bool> Put(Driver driver, int id)
     {
-        var existingDriver = Get(id);
+        var existingDriver = await Get(id);
         if (existingDriver == null)
         {
             return false;
@@ -54,6 +55,7 @@ public class DriverRepository : IRepository<Driver, int>
         existingDriver.Passport = driver.Passport;
         existingDriver.Address = driver.Address;
         existingDriver.Phone = driver.Phone;
+        await context.SaveChangesAsync();
         return true;
     }
 }
