@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TaxiDetails.Repositories;
+using AutoMapper;
 using TaxiDetails.WebApi.DTO;
 
 namespace TaxiDetails.WebApi.Controllers;
@@ -17,9 +17,9 @@ public class UserController(IRepository<User, int> repository, IMapper mapper) :
     /// </summary>
     /// <returns>list user and http status</returns>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> Get()
+    public ActionResult<IEnumerable<User>> Get()
     {
-        return Ok(await repository.GetAll());
+        return Ok(repository.GetAll());
     }
 
     /// <summary>
@@ -28,9 +28,9 @@ public class UserController(IRepository<User, int> repository, IMapper mapper) :
     /// <param name="id">identificator of user</param>
     /// <returns>object user and http status</returns>
     [HttpGet("{id}")]
-    public async Task<ActionResult<User>> Get(int id)
+    public ActionResult<User> Get(int id)
     {
-        var user = await repository.Get(id);
+        var user = repository.Get(id);
 
         if (user == null)
         {
@@ -45,14 +45,14 @@ public class UserController(IRepository<User, int> repository, IMapper mapper) :
     /// </summary>
     /// <param name="value">object of user </param>
     [HttpPost]
-    public async Task<ActionResult<User>> Post([FromBody] UserDto value)
+    public IActionResult Post([FromBody] UserDto value)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var user = mapper.Map<User>(value);
-        var result = await repository.Post(user);
-        return Ok(result);
+        repository.Post(user);
+        return Ok();
     }
 
     /// <summary>
@@ -61,14 +61,14 @@ public class UserController(IRepository<User, int> repository, IMapper mapper) :
     /// <param name="id">identificator  of user</param>
     /// <param name="value">new user</param>
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] UserDto value)
+    public IActionResult Put(int id, [FromBody] UserDto value)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var user = mapper.Map<User>(value);
-        var result = await repository.Put(user, id);
-        if (!result) return NotFound();
+        user.Id = id;
+        if (!repository.Put(user, id)) return NotFound();
         return Ok();
     }
 
@@ -77,10 +77,9 @@ public class UserController(IRepository<User, int> repository, IMapper mapper) :
     /// </summary>
     /// <param name="id">identificator user</param>
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public IActionResult Delete(int id)
     {
-        var result = await repository.Delete(id);
-        if (!result) return NotFound();
+        if (!repository.Delete(id)) return NotFound();
         return Ok();
     }
 }

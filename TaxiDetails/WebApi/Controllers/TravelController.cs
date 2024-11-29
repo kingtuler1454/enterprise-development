@@ -10,16 +10,16 @@ namespace TaxiDetails.WebApi.Controllers;
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
-public class TravelController(IRepository<Travel, int> travelRepository, IRepository<Car, int> carRepository, IRepository<User, int> userRepository, IMapper mapper) : ControllerBase
+public class TravelController(IRepository<Travel, int> repository, IMapper mapper) : ControllerBase
 {
     /// <summary>
     /// return travel
     /// </summary>
     /// <returns>list of travel and http status</returns>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Travel>>> Get()
+    public ActionResult<IEnumerable<Travel>> Get()
     {
-        return Ok(await travelRepository.GetAll());
+        return Ok(repository.GetAll());
     }
 
     /// <summary>
@@ -28,9 +28,9 @@ public class TravelController(IRepository<Travel, int> travelRepository, IReposi
     /// <param name="id">identificator travel</param>
     /// <returns>object travel and http status</returns>
     [HttpGet("{id}")]
-    public async Task<ActionResult<Travel>> Get(int id)
+    public ActionResult<Travel> Get(int id)
     {
-        var travel = await travelRepository.Get(id);
+        var travel = repository.Get(id);
 
         if (travel == null)
         {
@@ -45,22 +45,14 @@ public class TravelController(IRepository<Travel, int> travelRepository, IReposi
     /// </summary>
     /// <param name="value">object travel</param>
     [HttpPost]
-    public async Task<ActionResult<Travel>> Post([FromBody] TravelDto value)
+    public IActionResult Post([FromBody] TravelDto value)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var travel = mapper.Map<Travel>(value);
-        var car = await carRepository.Get(value.AssignedCarId);
-        var user = await userRepository.Get(value.ClientId);
-        if (user == null || car == null)
-        {
-            return BadRequest("Incorrect ids");
-        }
-        travel.AssignedCar = car;
-        travel.Client = user;
-        var result = await travelRepository.Post(travel);
-        return Ok(result);
+        repository.Post(travel);
+        return Ok();
     }
 
     /// <summary>
@@ -69,22 +61,14 @@ public class TravelController(IRepository<Travel, int> travelRepository, IReposi
     /// <param name="id">identificator of travel.</param>
     /// <param name="value">new object of travel</param>
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] TravelDto value)
+    public IActionResult Put(int id, [FromBody] TravelDto value)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var travel = mapper.Map<Travel>(value);
-        var car = await carRepository.Get(value.AssignedCarId);
-        var user = await userRepository.Get(value.ClientId);
-        if (user == null || car == null)
-        {
-            return BadRequest("Incorrect ids");
-        }
-        travel.AssignedCar = car;
-        travel.Client = user;
-        var result = await travelRepository.Put(travel, id);
-        if (!result) return NotFound();
+        travel.Id = id;
+        if (!repository.Put(travel, id)) return NotFound();
         return Ok();
     }
 
@@ -93,10 +77,9 @@ public class TravelController(IRepository<Travel, int> travelRepository, IReposi
     /// </summary>
     /// <param name="id">identificator of travel</param>
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public IActionResult Delete(int id)
     {
-        var result = await travelRepository.Delete(id);
-        if (!result) return NotFound();
+        if (!repository.Delete(id)) return NotFound();
         return Ok();
     }
 }

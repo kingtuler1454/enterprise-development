@@ -10,16 +10,16 @@ namespace TaxiDetails.WebApi.Controllers;
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
-public class CarController(IRepository<Car, int> carRepository, IRepository<Driver, int> driverRepository ,  IMapper mapper) : ControllerBase
+public class CarController(IRepository<Car, int> repository, IMapper mapper) : ControllerBase
 {
     /// <summary>
     /// return list of users
     /// </summary>
     /// <returns>list of user and http status</returns>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Car>>> Get()
+    public ActionResult<IEnumerable<Car>> Get()
     {
-        return Ok(await carRepository.GetAll());
+        return Ok(repository.GetAll());
     }
 
     /// <summary>
@@ -28,9 +28,9 @@ public class CarController(IRepository<Car, int> carRepository, IRepository<Driv
     /// <param name="id">identificator of car</param>
     /// <returns>object of car and http.</returns>
     [HttpGet("{id}")]
-    public async Task<ActionResult<Car>> Get(int id)
+    public ActionResult<Car> Get(int id)
     {
-        var car = await carRepository.Get(id);
+        var car = repository.Get(id);
 
         if (car == null)
         {
@@ -45,20 +45,14 @@ public class CarController(IRepository<Car, int> carRepository, IRepository<Driv
     /// </summary>
     /// <param name="value">object of car.</param>
     [HttpPost]
-    public async Task<ActionResult<Car>> Post([FromBody] CarDto value)
+    public IActionResult Post([FromBody] CarDto value)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var car = mapper.Map<Car>(value);
-        var driver = await driverRepository.Get(value.AssignedDriverId);
-        if (driver == null)
-        {
-            return BadRequest("Driver not found");
-        }
-        car.AssignedDriver = driver;
-        var result = await carRepository.Post(car);
-        return Ok(result);
+        repository.Post(car);
+        return Ok();
     }
 
     /// <summary>
@@ -67,20 +61,14 @@ public class CarController(IRepository<Car, int> carRepository, IRepository<Driv
     /// <param name="id">identificator of car</param>
     /// <param name="value">new exemplar of car.</param>
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] CarDto value)
+    public IActionResult Put(int id, [FromBody] CarDto value)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var car = mapper.Map<Car>(value);
-        var driver = await driverRepository.Get(value.AssignedDriverId);
-        if (driver == null)
-        {
-            return BadRequest("Driver not found");
-        }
-        car.AssignedDriver = driver;
-        var result = await carRepository.Put(car, id);
-        if (!result) return NotFound();
+        car.Id = id;
+        if (!repository.Put(car, id)) return NotFound();
         return Ok();
     }
 
@@ -89,10 +77,9 @@ public class CarController(IRepository<Car, int> carRepository, IRepository<Driv
     /// </summary>
     /// <param name="id">identificator of delete car</param>
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public IActionResult Delete(int id)
     {
-        var result = await carRepository.Delete(id);
-        if (!result) return NotFound();
+        if (!repository.Delete(id)) return NotFound();
         return Ok();
     }
 }

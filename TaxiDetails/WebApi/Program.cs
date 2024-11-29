@@ -1,16 +1,10 @@
 using TaxiDetails;
 using TaxiDetails.Repositories;
-using TaxiDetails.Context;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using TaxiDetails.WebApi;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDbContext<TaxiDetailsDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -30,10 +24,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new DateConverter());
 });
 
-builder.Services.AddScoped<IRepository<User, int>, UserRepository>();
-builder.Services.AddScoped<IRepository<Driver, int>, DriverRepository>();
-builder.Services.AddScoped<IRepository<Car, int>, CarRepository>();
-builder.Services.AddScoped<IRepository<Travel, int>, TravelRepository>();
+builder.Services.AddSingleton<IRepository<User, int>, UserRepository>();
+builder.Services.AddSingleton<IRepository<Driver, int>, DriverRepository>();
+builder.Services.AddSingleton<IRepository<Car, int>, CarRepository>();
+builder.Services.AddSingleton<IRepository<Travel, int>, TravelRepository>();
 
 builder.Services.AddAutoMapper(typeof(Mapping));
 

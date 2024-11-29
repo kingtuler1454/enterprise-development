@@ -17,9 +17,9 @@ public class DriverController(IRepository<Driver, int> repository, IMapper mappe
     /// </summary>
     /// <returns>list of drivers and http status</returns>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Driver>>> Get()
+    public ActionResult<IEnumerable<Driver>> Get()
     {
-        return Ok(await repository.GetAll());
+        return Ok(repository.GetAll());
     }
 
     /// <summary>
@@ -28,9 +28,9 @@ public class DriverController(IRepository<Driver, int> repository, IMapper mappe
     /// <param name="id">identificator of driver</param>
     /// <returns>Object of driver and http status</returns>
     [HttpGet("{id}")]
-    public async Task<ActionResult<Driver>> Get(int id)
+    public ActionResult<Driver> Get(int id)
     {
-        var driver = await repository.Get(id);
+        var driver = repository.Get(id);
 
         if (driver == null)
         {
@@ -45,14 +45,14 @@ public class DriverController(IRepository<Driver, int> repository, IMapper mappe
     /// </summary>
     /// <param name="value">Object of driver for add</param>
     [HttpPost]
-    public async Task<ActionResult<Driver>> Post([FromBody] DriverDto value)
+    public IActionResult Post([FromBody] DriverDto value)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var driver = mapper.Map<Driver>(value);
-        var result = await repository.Post(driver);
-        return Ok(result);
+        repository.Post(driver);
+        return Ok();
     }
 
     /// <summary>
@@ -61,14 +61,14 @@ public class DriverController(IRepository<Driver, int> repository, IMapper mappe
     /// <param name="id">identificator of driver</param>
     /// <param name="value">new driver</param>
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] DriverDto value)
+    public IActionResult Put(int id, [FromBody] DriverDto value)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var driver = mapper.Map<Driver>(value);
-        var result = await repository.Put(driver, id);
-        if (!result) return NotFound();
+        driver.Id = id;
+        if (!repository.Put(driver, id)) return NotFound();
         return Ok();
     }
 
@@ -77,10 +77,9 @@ public class DriverController(IRepository<Driver, int> repository, IMapper mappe
     /// </summary>
     /// <param name="id">identificator of driver</param>
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public IActionResult Delete(int id)
     {
-        var result = await repository.Delete(id);
-        if (!result) return NotFound();
+        if (!repository.Delete(id)) return NotFound();
         return Ok();
     }
 }

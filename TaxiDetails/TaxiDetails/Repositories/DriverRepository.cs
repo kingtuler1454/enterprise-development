@@ -1,50 +1,49 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TaxiDetails.Context; 
-namespace TaxiDetails.Repositories;
-public class DriverRepository(TaxiDetailsDbContext context) : IRepository<Driver, int>
+﻿namespace TaxiDetails.Repositories;
+public class DriverRepository : IRepository<Driver, int>
 {
+    private readonly List<Driver> _drivers = [];
+    private int _id = 1;
+
     /// <summary>
     /// delete driver of identificator.
     /// </summary>
-    public async Task<bool> Delete(int id)
+    public bool Delete(int id)
     {
-        var driver = await Get(id);
+        var driver = Get(id);
 
         if (driver == null)
         {
             return false;
         }
-        context.Drivers.Remove(driver);
-        await context.SaveChangesAsync();
+        _drivers.Remove(driver);
         return true;
     }
 
     /// <summary>
     /// search and return driver on identificator
     /// </summary>
-    public async Task<Driver?> Get(int id) => await context.Drivers.FirstOrDefaultAsync(driver => driver.Id == id);
+    public Driver? Get(int id) => _drivers.Find(driver => driver.Id == id);
 
     /// <summary>
     /// return all drivers.
     /// </summary>
-    public async Task<IEnumerable<Driver>> GetAll() => await context.Drivers.ToListAsync();
+    public IEnumerable<Driver> GetAll() => _drivers;
 
     /// <summary>
     /// add new driver.
     /// </summary>
-    public async Task<Driver> Post(Driver driver)
+    public void Post(Driver driver)
     {
-        context.Drivers.Add(driver);
-        await context.SaveChangesAsync();
-        return driver;
+        driver.Id = _id++;
+        _drivers.Add(driver);
     }
 
     /// <summary>
     ///update driver of identificator
     /// </summary>
-    public async Task<bool> Put(Driver driver, int id)
+    public bool Put(Driver driver, int id)
     {
-        var existingDriver = await Get(id);
+        var existingDriver = Get(id);
         if (existingDriver == null)
         {
             return false;
@@ -55,7 +54,6 @@ public class DriverRepository(TaxiDetailsDbContext context) : IRepository<Driver
         existingDriver.Passport = driver.Passport;
         existingDriver.Address = driver.Address;
         existingDriver.Phone = driver.Phone;
-        await context.SaveChangesAsync();
         return true;
     }
 }
