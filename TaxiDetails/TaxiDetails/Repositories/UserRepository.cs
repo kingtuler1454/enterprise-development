@@ -1,55 +1,57 @@
-﻿namespace TaxiDetails.Repositories;
-public class UserRepository : IRepository<User, int>
+﻿using Microsoft.EntityFrameworkCore;
+using TaxiDetails.Context;
+namespace TaxiDetails.Repositories;
+public class UserRepository(TaxiDetailsDbContext context) : IRepository<User, int>
 {
-    private readonly List<User> _users = [];
-    private int _id = 1;
-
     /// <summary>
     /// delete user of identificator
     /// </summary>
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        var user = Get(id);
+        var user = await Get(id);
 
         if (user == null)
         {
             return false;
         }
-        _users.Remove(user);
+        context.Users.Remove(user);
+        await context.SaveChangesAsync();
         return true;
     }
 
     /// <summary>
     /// search and refresh of identificator
     /// </summary>
-    public User? Get(int id) => _users.Find(user => user.Id == id);
+    public async Task<User?> Get(int id) => await context.Users.FirstOrDefaultAsync(user => user.Id == id);
 
     /// <summary>
     /// return all users
     /// </summary>
-    public IEnumerable<User> GetAll() => _users;
+    public async Task<IEnumerable<User>> GetAll() => await context.Users.ToListAsync();
 
     /// <summary>
     /// add new user
     /// </summary>
-    public void Post(User user)
+    public async Task<User> Post(User user)
     {
-        user.Id = _id++;
-        _users.Add(user);
+        context.Users.Add(user);
+        await context.SaveChangesAsync();
+        return user;
     }
 
     /// <summary>
     /// update of user
     /// </summary>
-    public bool Put(User user, int id)
+    public async Task<bool> Put(User user, int id)
     {
-        var existingUser = Get(id);
+        var existingUser = await Get(id);
         if (existingUser == null)
         {
             return false;
         }
         existingUser.Phone = user.Phone;
         existingUser.FullName = user.FullName;
+        await context.SaveChangesAsync();
         return true;
     }
 }

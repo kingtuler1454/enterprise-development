@@ -1,49 +1,50 @@
-﻿namespace TaxiDetails.Repositories;
-public class CarRepository : IRepository<Car, int>
+﻿using Microsoft.EntityFrameworkCore;
+using TaxiDetails.Context;
+namespace TaxiDetails.Repositories;
+public class CarRepository(TaxiDetailsDbContext context) : IRepository<Car, int>
 {
-    private readonly List<Car> _cars = [];
-    private int _id = 1;
-
     /// <summary>
     /// delete auto of identificator
     /// </summary>
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        var car = Get(id);
+        var car = await Get(id);
 
         if (car == null)
         {
             return false;
         }
-        _cars.Remove(car);
+        context.Cars.Remove(car);
+        await context.SaveChangesAsync();
         return true;
     }
 
     /// <summary>
     ///search and return of identificator
     /// </summary>
-    public Car? Get(int id) => _cars.Find(car => car.Id == id);
+    public async Task<Car?> Get(int id) => await context.Cars.Include(c => c.AssignedDriver).FirstOrDefaultAsync(car => car.Id == id);
 
     /// <summary>
     /// return all cars
     /// </summary>
-    public IEnumerable<Car> GetAll() => _cars;
+    public async Task<IEnumerable<Car>> GetAll() => await context.Cars.Include(c => c.AssignedDriver).ToListAsync();
 
     /// <summary>
     /// add new car
     /// </summary>
-    public void Post(Car car)
+    public async Task<Car> Post(Car car)
     {
-        car.Id = _id++;
-        _cars.Add(car);
+        context.Cars.Add(car);
+        await context.SaveChangesAsync();
+        return car;
     }
 
     /// <summary>
     /// update auto
     /// </summary>
-    public bool Put(Car car, int id)
+    public async Task<bool> Put(Car car, int id)
     {
-        var existingCar = Get(id);
+        var existingCar = await Get(id);
         if (existingCar == null)
         {
             return false;
@@ -52,6 +53,7 @@ public class CarRepository : IRepository<Car, int>
         existingCar.Model = car.Model;
         existingCar.Color = car.Color;
         existingCar.AssignedDriver = car.AssignedDriver;
+        await context.SaveChangesAsync();
         return true;
     }
 }

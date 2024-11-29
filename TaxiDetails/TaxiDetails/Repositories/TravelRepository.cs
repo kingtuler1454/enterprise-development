@@ -1,49 +1,50 @@
-﻿namespace TaxiDetails.Repositories;
-public class TravelRepository : IRepository<Travel, int>
+﻿using Microsoft.EntityFrameworkCore;
+using TaxiDetails.Context;
+namespace TaxiDetails.Repositories;
+public class TravelRepository(TaxiDetailsDbContext context) : IRepository<Travel, int>
 {
-    private readonly List<Travel> _travels = [];
-    private int _id = 1;
-
     /// <summary>
     /// delete travel of identificator.
     /// </summary>
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        var travel = Get(id);
+        var travel = await Get(id);
 
         if (travel == null)
         {
             return false;
         }
-        _travels.Remove(travel);
+        context.Travels.Remove(travel);
+        await context.SaveChangesAsync();
         return true;
     }
 
     /// <summary>
     /// search and return of identificator
     /// </summary>
-    public Travel? Get(int id) => _travels.Find(travel => travel.Id == id);
+    public async Task<Travel?> Get(int id) => await context.Travels.Include(t => t.AssignedCar).Include(t => t.Client).FirstOrDefaultAsync(travel => travel.Id == id);
 
     /// <summary>
     /// return all travels
     /// </summary>
-    public IEnumerable<Travel> GetAll() => _travels;
+    public async Task<IEnumerable<Travel>> GetAll() => await context.Travels.ToListAsync();
 
     /// <summary>
     /// add new travel
     /// </summary>
-    public void Post(Travel travel)
+    public async Task<Travel> Post(Travel travel)
     {
-        travel.Id = _id++;
-        _travels.Add(travel);
+        context.Travels.Add(travel);
+        await context.SaveChangesAsync();
+        return travel;
     }
 
     /// <summary>
     /// update travel of identification
     /// </summary>
-    public bool Put(Travel travel, int id)
+    public async Task<bool> Put(Travel travel, int id)
     {
-        var existingTravel = Get(id);
+        var existingTravel = await Get(id);
         if (existingTravel == null)
         {
             return false;
@@ -55,6 +56,7 @@ public class TravelRepository : IRepository<Travel, int>
         existingTravel.Cost = travel.Cost;
         existingTravel.AssignedCar = travel.AssignedCar;
         existingTravel.Client = travel.Client;
+        await context.SaveChangesAsync();
         return true;
     }
 }
