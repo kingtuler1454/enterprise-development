@@ -16,10 +16,10 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
         Assert.NotNull(_dataProvider.Cars);
         Assert.True(_dataProvider.Cars.Any(), "The Cars collection is empty.");
         var expectedData = _dataProvider.Cars
-            .FirstOrDefault(c => c.AssignedDriver?.Name == name);
+            .FirstOrDefault(c => c.AssignedDriver.Name == name);
         Assert.NotNull(expectedData);
         var getData = _dataProvider.Cars
-            .FirstOrDefault(c => c.AssignedDriver?.Name == name);
+            .FirstOrDefault(c => c.AssignedDriver.Name == name);
         Assert.NotNull(getData);
         Assert.Equal(expectedData, getData);
     }
@@ -58,25 +58,28 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
     public void ReturnPassengerTravelsCount()
     {
         var expectedUsersName = new Dictionary<string, int>
-        {
-            { _dataProvider.Users[0].FullName!, 2 },
-            { _dataProvider.Users[2].FullName!, 1 },
-            { _dataProvider.Users[3].FullName!, 1 },
-   
-        };
+    {
+        { _dataProvider.Users[0].FullName!, 2 },
+        { _dataProvider.Users[2].FullName!, 1 },
+        { _dataProvider.Users[3].FullName!, 1 },
+    };
+
         var getPassengerTripCounts = _dataProvider.Travels
-            .Where(t => !string.IsNullOrEmpty(t.Client.FullName))
-            .GroupBy(t => t.Client!)
+             .Where(t => !string.IsNullOrEmpty(t.Client.FullName))
+             .GroupBy(t => t.Client)
             .Select(g => new
-            {
-                Passenger = g.Key,
-                TripCount = g.Count()
-            })
+             {
+                 Passenger = g.Key,
+                 TripCount = g.Count()
+             })
             .OrderBy(p => p.Passenger.Id)
             .ToDictionary(
                 x => x.Passenger.FullName!,
                 x => x.TripCount
             );
+        Assert.Equal(expectedUsersName, getPassengerTripCounts);
+
+        // Сравнение результата с ожидаемым
         Assert.Equal(expectedUsersName, getPassengerTripCounts);
     }
     /// <summary>
@@ -128,8 +131,8 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
             .Select(g => (
                 Driver: g.Key.Name!,
                 TripCount: g.Count(),
-                AvgDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Average(t => t.TravelTime.Value.TotalMinutes))),
-                MaxDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Max(t => t.TravelTime.Value.TotalMinutes)))
+            AvgDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Average(t => t.TravelTime.HasValue ? t.TravelTime.Value.TotalMinutes : 0))),
+            MaxDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Max(t => t.TravelTime.HasValue ? t.TravelTime.Value.TotalMinutes : 0)))
             ))
             .ToList();
 
@@ -162,7 +165,7 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
                             .Where(t => t.TripDate >= startDate && t.TripDate <= endDate)
                             .GroupBy(t => t.Client)
                             .Max(g => g.Count()))
-            .Select(x => x.Passenger!)
+            .Select(x => x.Passenger)
             .ToList();
         Assert.Equal(expectedData, topPassengers);
     }
