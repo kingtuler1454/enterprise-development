@@ -42,7 +42,7 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
 
         var getData = _dataProvider.Travels
             .Where(t => t.TripDate >= startDate && t.TripDate <= endDate)
-            .Select(t => t.Client?.FullName) 
+            .Select(t => t.Client.FullName) 
             .Where(fullName => !string.IsNullOrEmpty(fullName))
             .Cast<string>() 
             .Distinct()
@@ -65,7 +65,7 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
    
         };
         var getPassengerTripCounts = _dataProvider.Travels
-            .Where(t => t.Client != null && !string.IsNullOrEmpty(t.Client.FullName))
+            .Where(t => !string.IsNullOrEmpty(t.Client.FullName))
             .GroupBy(t => t.Client!)
             .Select(g => new
             {
@@ -93,8 +93,8 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
             { _dataProvider.Drivers[3].Name!, 1 },
         };
         var driverTripCounts1 = _dataProvider.Travels
-            .Where(t => t.AssignedCar?.AssignedDriver?.Name != null) 
-            .GroupBy(t => t.AssignedCar!.AssignedDriver!)
+            .Where(t => t.AssignedCar.AssignedDriver.Name != null) 
+            .GroupBy(t => t.AssignedCar.AssignedDriver)
             .Select(g => new
             {
                 Driver = g.Key,
@@ -123,13 +123,13 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
         };
 
         var driverTripStats = _dataProvider.Travels
-            .Where(t => t.AssignedCar?.AssignedDriver?.Name != null)
-            .GroupBy(t => t.AssignedCar!.AssignedDriver!)
+            .Where(t => t.AssignedCar.AssignedDriver.Name != null)
+            .GroupBy(t => t.AssignedCar.AssignedDriver!)
             .Select(g => (
                 Driver: g.Key.Name!,
                 TripCount: g.Count(),
-                AvgDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Average(t => t.TravelTime.HasValue ? t.TravelTime.Value.TotalMinutes : 0))),
-                MaxDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Max(t => t.TravelTime.HasValue ? t.TravelTime.Value.TotalMinutes : 0)))
+                AvgDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Average(t => t.TravelTime.Value.TotalMinutes))),
+                MaxDrivingTime: TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(g.Max(t => t.TravelTime.Value.TotalMinutes)))
             ))
             .ToList();
 
@@ -151,8 +151,7 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
 
         var topPassengers = _dataProvider.Travels
             .Where(t => t.TripDate >= startDate && t.TripDate <= endDate)
-            .Where(t => t.Client != null)
-            .GroupBy(t => t.Client!)
+            .GroupBy(t => t.Client)
             .Select(g => new
             {
                 Passenger = g.Key,
@@ -160,8 +159,8 @@ public class Requests(TaxiDetailsData dataProvider) : IClassFixture<TaxiDetailsD
             })
             .Where(x => x.TripCount ==
                         _dataProvider.Travels
-                            .Where(t => t.TripDate >= startDate && t.TripDate <= endDate && t.Client != null)
-                            .GroupBy(t => t.Client!)
+                            .Where(t => t.TripDate >= startDate && t.TripDate <= endDate)
+                            .GroupBy(t => t.Client)
                             .Max(g => g.Count()))
             .Select(x => x.Passenger!)
             .ToList();

@@ -25,7 +25,7 @@ public class TaxiDetailsDbContext(DbContextOptions<TaxiDetailsDbContext> options
             .Property(t => t.TripDate)
                 .HasConversion(
                     v => v.HasValue ? v.Value.ToUniversalTime() : (DateTime?)null,
-                    v => v.HasValue ? DateTime.SpecifyKind(v.Value, DateTimeKind.Utc) : (DateTime?)null
+                    v => v.HasValue ? DateTime.SpecifyKind(v.Value, DateTimeKind.Utc) : null
                 );
 
         modelBuilder.Entity<Travel>()
