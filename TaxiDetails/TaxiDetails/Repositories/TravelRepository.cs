@@ -22,12 +22,12 @@ public class TravelRepository(TaxiDetailsDbContext context) : IRepository<Travel
     /// <summary>
     /// search and return of identificator
     /// </summary>
-    public async Task<Travel?> Get(int id) => await context.Travels.Include(t => t.AssignedCar).Include(t => t.Client).FirstOrDefaultAsync(travel => travel.Id == id);
+    public async Task<Travel?> Get(int id) => await context.Travels.Include(t => t.AssignedCar).ThenInclude(t => t.AssignedDriver).Include(t => t.Client).FirstOrDefaultAsync(travel => travel.Id == id);
 
     /// <summary>
     /// return all travels
     /// </summary>
-    public async Task<IEnumerable<Travel>> GetAll() => await context.Travels.ToListAsync();
+    public async Task<IEnumerable<Travel>> GetAll() => await context.Travels.Include(t => t.AssignedCar).ThenInclude(t => t.AssignedDriver).Include(t => t.Client).ToListAsync();
 
     /// <summary>
     /// add new travel

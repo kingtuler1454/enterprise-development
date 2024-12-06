@@ -1,0 +1,52 @@
+<table class="min-w-full  my-7 bg-grey text-white rounded-2xl overflow-hidden border-2 border-border">
+  <thead>
+  <tr class="bg-table">
+    <th class="px-4 py-2  rounded-tl-2xl">№</th>
+    <th class="px-4 py-2  ">Фамилия</th>
+    <th class="px-4 py-2  ">Имя</th>
+    <th class="px-4 py-2  ">Отчество</th>
+    <th class="px-4 py-2  ">Паспорт</th>
+    <th class="px-4 py-2  ">Адрес</th>
+    <th class="px-4 py-2  ">Номер телефона</th>
+    <th class=""></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let driver of drivers; let i = index">
+    <td class="px-4 py-2 border-2 border-border text-center">{{ i + 1 }}</td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="driver.surname"
+             [readonly]="!editingStates[driver.id!]"/>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="driver.name"
+             [readonly]="!editingStates[driver.id!]"/>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="driver.patronymic"
+             [readonly]="!editingStates[driver.id!]"/>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="driver.passport"
+             [readonly]="!editingStates[driver.id!]"/>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="driver.address"
+             [readonly]="!editingStates[driver.id!]"/>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="driver.phone"
+             [readonly]="!editingStates[driver.id!]"/>
+    </td>
+    <td class="border-2 border-border px-4 py-2 bg-grey">
+      <app-buttons
+        [itemId]="driver.id"
+        (delete)="deleteDriver($event!)"
+        (save)="saveDriver(driver)"
+        (edit)="startEdit(driver.id!)"
+        (cancel)="cancelEdit(driver.id!)">
+      </app-buttons>
+    </td>
+  </tr>
+  </tbody>
+</table>

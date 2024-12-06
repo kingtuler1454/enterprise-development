@@ -1,0 +1,77 @@
+<table class="min-w-full  my-7 bg-grey text-white rounded-2xl overflow-hidden border-2 border-border">
+  <thead>
+  <tr class="bg-table">
+    <th class="px-4 py-2 rounded-tl-2xl">№</th>
+    <th class="px-4 py-2">Пункт отправления</th>
+    <th class="px-4 py-2">Пункт назначения</th>
+    <th class="px-4 py-2">Дата поездки</th>
+    <th class="px-4 py-2">Время движения</th>
+    <th class="px-4 py-2">Стоимость</th>
+    <th class="px-4 py-2">Гос. номер автомобиля</th>
+    <th class="px-4 py-2">Клиент</th>
+    <th class=""></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let travel of travels; let i = index">
+    <td class="px-4 py-2 border-2 border-border text-center">{{ i + 1 }}</td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="travel.departurePoint"
+             [readonly]="!editingStates[travel.id!]"/>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="travel.destinationPoint"
+             [readonly]="!editingStates[travel.id!]"/>
+    </td>
+    <td class="border-2 border-border text-center">
+      <ng-container *ngIf="editingStates[travel.id!]">
+        <input type="date"
+               class="w-full h-full px-2 py-1 bg-grey text-center"
+               [(ngModel)]="travel.tripDate"/>
+      </ng-container>
+      <ng-container *ngIf="!editingStates[travel.id!]">
+        {{ travel.tripDate }}
+      </ng-container>
+    </td>
+    <td class="border-2 border-border text-center">
+      <ng-container *ngIf="editingStates[travel.id!]">
+        <input type="time"
+               class="w-full h-full px-2 py-1 bg-grey text-center"
+               [(ngModel)]="travel.travelTime"/>
+      </ng-container>
+      <ng-container *ngIf="!editingStates[travel.id!]">
+        {{ travel.travelTime }}
+      </ng-container>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="travel.cost"
+             [readonly]="!editingStates[travel.id!]"/>
+    </td>
+    <td class="border-2 border-border text-center">
+      <ng-container *ngIf="editingStates[travel.id!]">
+        <select [(ngModel)]="travel.assignedCar.id" class="w-full h-full px-2 py-1 bg-grey text-center">
+          <option *ngFor="let car of cars" [value]="car.id!">{{ car.plate }}</option>
+        </select>
+      </ng-container>
+      <ng-container *ngIf="!editingStates[travel.id!]">{{ travel.assignedCar.plate }}</ng-container>
+    </td>
+    <td class="border-2 border-border text-center">
+      <ng-container *ngIf="editingStates[travel.id!]">
+        <select [(ngModel)]="travel.client.id" class="w-full h-full px-2 py-1 bg-grey text-center">
+          <option *ngFor="let user of users" [value]="user.id!">{{ user.fullName! }}</option>
+        </select>
+      </ng-container>
+      <ng-container *ngIf="!editingStates[travel.id!]">{{ travel.client.fullName! }}</ng-container>
+    </td>
+    <td class="border-2 border-border px-4 py-2 bg-grey">
+      <app-buttons
+        [itemId]="travel.id"
+        (delete)="deleteTravel($event!)"
+        (save)="saveTravel(travel)"
+        (edit)="startEdit(travel.id!)"
+        (cancel)="cancelEdit(travel.id!)">
+      </app-buttons>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,33 @@
+<table class="min-w-full  my-7 bg-grey text-white rounded-2xl overflow-hidden border-2 border-border">
+  <thead>
+  <tr class="bg-table">
+    <th class="px-4 py-2  rounded-tl-2xl">№</th>
+    <th class="px-4 py-2  ">ФИО</th>
+    <th class="px-4 py-2  ">Номер телефона</th>
+    <th class=""></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users; let i = index">
+    <td class="px-4 py-2 border-2 border-border text-center">{{ i + 1 }}</td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="user.fullName"
+             [readonly]="!editingStates[user.id!]"/>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="user.phone"
+             [readonly]="!editingStates[user.id!]"/>
+    </td>
+
+    <td class="border-2 border-border px-4 py-2 bg-grey">
+      <app-buttons
+        [itemId]="user.id"
+        (delete)="deleteUser($event!)"
+        (save)="saveUser(user)"
+        (edit)="startEdit(user.id!)"
+        (cancel)="cancelEdit(user.id!)">
+      </app-buttons>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,65 @@
+<button
+  (click)="openForm()"
+  class="bg-grey border-border border-2 text-base font-semibold text-white px-6 py-4 rounded-2xl hover:bg-blue-600 hover:shadow-2xl transition-all duration-300">
+  Добавить поездку
+</button>
+<div *ngIf="isFormOpen" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md text-dark font-semibold">
+    <h2 class="text-2xl mb-4">Добавить поездку</h2>
+    <form [formGroup]="travelForm">
+      <div class="mb-4">
+        <label class="block text-gray-700">Пункт отправления</label>
+        <input type="text" formControlName="departurePoint" class="w-full p-2 border border-gray-300 rounded mt-1"/>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Пункт назначения</label>
+        <input type="text" formControlName="destinationPoint" class="w-full p-2 border border-gray-300 rounded mt-1"/>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Дата поездки</label>
+        <input type="date" formControlName="tripDate" class="w-full p-2 border border-gray-300 rounded mt-1"/>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Время поездки</label>
+        <input type="time" formControlName="travelTime" class="w-full p-2 border border-gray-300 rounded mt-1"/>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Стоимость поездки</label>
+        <input type="text" formControlName="cost" class="w-full p-2 border border-gray-300 rounded mt-1"/>
+      </div>
+
+      <div class="mb-4 flex gap-4">
+        <label class="block text-gray-700">Назначеноое такси</label>
+        <select formControlName="assignedCarId">
+          <option *ngFor="let car of cars" [ngValue]="car.id!">Гос. номер: {{ car.plate }}</option>
+        </select>
+      </div>
+
+      <div class="mb-4 flex gap-4">
+        <label class="block text-gray-700">Клиент</label>
+        <select formControlName="clientId">
+          <option *ngFor="let user of users" [ngValue]="user.id!">{{ user.fullName }}</option>
+        </select>
+      </div>
+
+      <div class="flex justify-between">
+        <button
+          type="submit"
+          [disabled]="travelForm.invalid"
+          (click)="onSubmit()"
+          class="bg-grey text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50">
+          Добавить
+        </button>
+        <button
+          (click)="closeForm()"
+          class="bg-red text-white px-4 py-2 rounded hover:bg-red-600">
+          Отменить
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

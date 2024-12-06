@@ -1,0 +1,46 @@
+<table class="min-w-full  my-7 bg-grey text-white rounded-2xl overflow-hidden border-2 border-border">
+  <thead>
+  <tr class="bg-table">
+    <th class="px-4 py-2 rounded-tl-2xl">№</th>
+    <th class="px-4 py-2">Гос. номер</th>
+    <th class="px-4 py-2">Модель</th>
+    <th class="px-4 py-2">Цвет</th>
+    <th class="px-4 py-2">Водитель</th>
+    <th class=""></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let car of cars; let i = index">
+    <td class="px-4 py-2 border-2 border-border text-center">{{ i + 1 }}</td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="car.plate"
+             [readonly]="!editingStates[car.id!]"/>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="car.model"
+             [readonly]="!editingStates[car.id!]"/>
+    </td>
+    <td class="border-2 border-border">
+      <input class="w-full h-full px-2 py-1 bg-grey text-center" [(ngModel)]="car.color"
+             [readonly]="!editingStates[car.id!]"/>
+    </td>
+    <td class="border-2 border-border text-center">
+      <ng-container *ngIf="editingStates[car.id!]">
+        <select [(ngModel)]="car.assignedDriver.id" class="w-full h-full px-2 py-1 bg-grey text-center">
+          <option *ngFor="let driver of drivers" [value]="driver.id">{{ driver.surname }} {{ driver.name}} {{ driver.patronymic }}</option>
+        </select>
+      </ng-container>
+      <ng-container *ngIf="!editingStates[car.id!]">{{ car.assignedDriver.surname }} {{ car.assignedDriver.name}} {{ car.assignedDriver.patronymic }}</ng-container>
+    </td>
+    <td class="border-2 border-border px-4 py-2 bg-grey">
+      <app-buttons
+        [itemId]="car.id"
+        (delete)="deleteCar($event!)"
+        (save)="saveCar(car)"
+        (edit)="startEdit(car.id!)"
+        (cancel)="cancelEdit(car.id!)">
+      </app-buttons>
+    </td>
+  </tr>
+  </tbody>
+</table>
